@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubscribeTable extends Migration
+class CreateLikeSuggestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateSubscribeTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscribe', function (Blueprint $table) {
+        Schema::create('like_suggestions', function (Blueprint $table) {
+            $table->boolean('isLiking');
+            $table->integer('id_category')->unsigned();
+            $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade');
             $table->integer('id_user')->unsigned();
-            $table->integer('id_activity')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_activity')->references('id')->on('activities')->onDelete('cascade');
-            $table->primary(['id_user', 'id_activity']);
+
         });
     }
 
@@ -29,6 +30,6 @@ class CreateSubscribeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscribe');
+        Schema::dropIfExists('like_suggestions');
     }
 }

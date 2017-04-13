@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubscribeTable extends Migration
+class CreateLikePicturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSubscribeTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscribe', function (Blueprint $table) {
+        Schema::create('like_pictures', function (Blueprint $table) {
             $table->integer('id_user')->unsigned();
-            $table->integer('id_activity')->unsigned();
+            $table->integer('id_picture')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_activity')->references('id')->on('activities')->onDelete('cascade');
-            $table->primary(['id_user', 'id_activity']);
+            $table->foreign('id_picture')->references('id')->on('pictures')->onDelete('cascade');
+            $table->primary(['id_user', 'id_picture']);
         });
     }
 
@@ -29,6 +29,6 @@ class CreateSubscribeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscribe');
+        Schema::dropIfExists('like_pictures');
     }
 }

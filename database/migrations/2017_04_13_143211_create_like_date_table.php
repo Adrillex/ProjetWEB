@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubscribeTable extends Migration
+class CreateLikeDateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSubscribeTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscribe', function (Blueprint $table) {
+        Schema::create('like_dates', function (Blueprint $table) {
             $table->integer('id_user')->unsigned();
-            $table->integer('id_activity')->unsigned();
+            $table->integer('id_date')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_activity')->references('id')->on('activities')->onDelete('cascade');
-            $table->primary(['id_user', 'id_activity']);
+            $table->foreign('id_date')->references('id')->on('dates')->onDelete('cascade');
+            $table->primary(['id_user', 'id_date']);
         });
     }
 
@@ -29,6 +29,6 @@ class CreateSubscribeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscribe');
+        Schema::dropIfExists('like_dates');
     }
 }
