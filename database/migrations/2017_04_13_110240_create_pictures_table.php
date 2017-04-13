@@ -15,10 +15,10 @@ class CreatePicturesTable extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_activities');
-            $table->integer('id_users');
-            $table->foreign('id_activities')->references('id')->on('activities');
-            $table->foreign('id_users')->references('id')->on('users');
+            $table->integer('id_activity')->unsigned();
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_activity')->references('id')->on('activities');
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

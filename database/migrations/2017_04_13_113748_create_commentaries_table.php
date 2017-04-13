@@ -15,10 +15,12 @@ class CreateCommentariesTable extends Migration
     {
         Schema::create('commentaries', function (Blueprint $table) {
             $table->increments('id');
-            $table->text(content);
-            $table->date(creation_date);
-            $table->foreign(id_activities)->references('id')->on('activities');
-            $table->foreign(id_users)->references('id')->on('users');
+            $table->text('content');
+            $table->date('creation_date');
+            $table->integer('id_activity')->unsigned();
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_activity')->references('id')->on('activities');
+            $table->foreign('id_users')->references('id')->on('users');
             //$table->timestamps(creation_date);
         });
     }
