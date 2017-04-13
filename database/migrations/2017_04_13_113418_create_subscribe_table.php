@@ -16,8 +16,8 @@ class CreateSubscribeTable extends Migration
         Schema::create('subscribe', function (Blueprint $table) {
             $table->integer('id_user')->unsigned();
             $table->integer('id_activity')->unsigned();
-            $table->foreign('id_user')->references('id')->on('activities')->onDelete('cascade');
-            $table->foreign('id_activity')->references('id')->on('date')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_activity')->references('id')->on('activities')->onDelete('cascade');
             $table->primary(['id_user', 'id_activity']);
         });
     }
