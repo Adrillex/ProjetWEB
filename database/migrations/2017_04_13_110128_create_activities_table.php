@@ -19,7 +19,7 @@ class CreateActivitiesTable extends Migration
             $table->text('content');
             $table->float('price');
             $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('news')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

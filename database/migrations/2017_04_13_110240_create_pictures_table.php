@@ -17,8 +17,8 @@ class CreatePicturesTable extends Migration
             $table->increments('id');
             $table->integer('id_activity')->unsigned();
             $table->integer('id_user')->unsigned();
-            $table->foreign('id_activity')->references('id')->on('activities');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_activity')->references('id')->on('activities')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

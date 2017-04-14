@@ -16,7 +16,7 @@ class CreateLikeSuggestionsTable extends Migration
         Schema::create('like_suggestions', function (Blueprint $table) {
             $table->boolean('isLiking');
             $table->integer('id_suggestion')->unsigned();
-            $table->foreign('id_suggestion')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('id_suggestion')->references('id')->on('suggestions')->onDelete('cascade');
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->primary(['id_user', 'id_suggestion']);
