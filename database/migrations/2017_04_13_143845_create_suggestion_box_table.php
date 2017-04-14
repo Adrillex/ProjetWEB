@@ -18,9 +18,9 @@ class CreateSuggestionBoxTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->integer('id_category')->unsigned();
-            $table->foreign('id_category')->references('id')->on('categories');
+            $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade');
             $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

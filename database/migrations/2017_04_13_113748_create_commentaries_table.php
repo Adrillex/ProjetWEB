@@ -19,8 +19,8 @@ class CreateCommentariesTable extends Migration
             $table->date('creation_date');
             $table->integer('id_activity')->unsigned();
             $table->integer('id_user')->unsigned();
-            $table->foreign('id_activity')->references('id')->on('activities');
-            $table->foreign('id_users')->references('id')->on('users');
+            $table->foreign('id_activity')->references('id')->on('activities')->onDelete('cascade');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
             //$table->timestamps(creation_date);
         });
     }
