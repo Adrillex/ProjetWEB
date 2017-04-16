@@ -13,7 +13,7 @@ class CreatePictureProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscribe', function (Blueprint $table) {
+        Schema::create('pictureProducts', function (Blueprint $table) {
             $table->integer('id_pictures')->unsigned();
             $table->integer('id_products')->unsigned();
             $table->foreign('id_pictures')->references('id')->on('pictures')->onDelete('cascade');
