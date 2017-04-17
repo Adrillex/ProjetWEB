@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('/activities', 'ActivitiesController');
 Route::resource('/products', 'ProductsController');
+Route::resource('/news', 'NewsController');
