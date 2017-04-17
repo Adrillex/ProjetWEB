@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +38,14 @@ class ActivitiesController extends Controller
     public function store(Request $request)
     {
         $request->merge(['id_user' => Auth::user()->id]);
-        Activity::create($request->all());
+        $activity = Activity::create($request->all());
+        $date = new Date();
+        $date->activity = $activity->id;
+        $arraydate = explode('/', $request->date);
+        $arraydate2 = explode(' ', $arraydate[2]);
+        //dd($arraydate2);
+        $date->date = $arraydate2[0] . '-' . $arraydate[1] . '-' . $arraydate[0] . ' ' . $arraydate2[1] . ':00';
+        $date->save();
         redirect(route('activities.index'));
     }
 
