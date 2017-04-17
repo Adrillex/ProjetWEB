@@ -1,9 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 17/04/2017
- * Time: 12:43
- */
+@extends('layouts.app')
 
-echo 'salutmaggle';
+@section('content')
+    <div class="content">
+        <div class="col-md-6 col-md-offset-3">
+            <a href="{{route('news.create')}}" class="btn btn-primary">Créer une New</a>
+        </div>
+    </div>
+@endsection
