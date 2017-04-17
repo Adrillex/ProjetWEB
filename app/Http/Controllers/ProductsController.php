@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categoryList = Category::SortCategoriesDesc()->pluck('name', 'id')->all();
+        return view('products.create', compact('categoryList'));
     }
 
     /**
@@ -37,8 +39,8 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $product = Product::create($request->all());
-        //return redirect(route('products.show',$product));
-        redirect(route('products.index'));
+        return redirect(route('products.show',$product));
+        //return redirect(route('products.index'));
     }
 
     /**

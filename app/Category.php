@@ -18,16 +18,11 @@ class Category extends Model
     }
 
     //for the foreign key of the products
-    public function products(){
-        return $this->hasMany('App\Products');
+    public function product(){
+        return $this->hasMany('App\Product');
     }
 
-    public function scopeSortCategoryDesc($query){
-        $datas = $query->orderByDesc('name');
-        $categoryList = Array();
-        foreach ($datas as $data) {
-            array_push($categoryList, $data);
-        }
-        return $categoryList;
+    public function scopeSortCategoriesDesc($query){
+        return $query->orderByDesc('name');
     }
 }

@@ -14,7 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categoryList = Category::SortCategoryDesc()->get();
+        $categoryList = Category::SortCategoriesDesc()->get();
         return view('categories.index', compact('categoryList'));
     }
 
