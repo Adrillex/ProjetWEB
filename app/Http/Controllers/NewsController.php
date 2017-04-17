@@ -60,7 +60,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $new = News::findOrFail($id);
+        $id_user = 1;
+        return view('news.edit', compact('new', 'id_user'));
     }
 
     /**
@@ -72,7 +74,9 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $new = News::findOrFail($id);
+        $new->update($request->all());
+        return redirect(route('news.index'));
     }
 
     /**
