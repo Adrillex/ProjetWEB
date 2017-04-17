@@ -8,7 +8,9 @@
                 <p>{{$new->content}}</p>
             </div>
             <div class="col-md-offset-8">
-                <p><a href="{{route('news.destroy', $new)}}" class="btn btn-danger">Supprimer l'article</a></p>
+                <p>{!! Form::open(['method' => 'DELETE','route' => ['news.destroy', $new->id]]) !!}
+                {!! Form::submit('Supprimer cet article ?', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}</p>
                 <p><a href="{{route('news.edit', $new)}}" class="btn btn-primary">Editer l'article</a></p>
             </div>
         @endforeach
