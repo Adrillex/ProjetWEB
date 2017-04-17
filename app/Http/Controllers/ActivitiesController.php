@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ActivitiesController extends Controller
 {
+
+    public function _construct(){
+        $this->middleware('auth');
+        $this->middleware('Bde',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,7 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        //
+        return view('activities.index');
     }
 
     /**
@@ -37,16 +42,15 @@ class ActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->date);
+        //dd($request->date);
         $request->merge(['id_user' => Auth::user()->id]);
         $activity = Activity::create($request->all());
-        $date = new Date();
-        $date->activity = $activity->id;
-        $arraydate = explode('/', $request->date);
-        $arraydate2 = explode(' ', $arraydate[2]);
-        //dd($arraydate2);
-        $date->date = $arraydate2[0] . '-' . $arraydate[1] . '-' . $arraydate[0] . ' ' . $arraydate2[1] . ':00';
-        $date->save();
+        for ($i = 0; $i < sizeof($request->date); $i++){
+            $date = new Date();
+            $date->activity = $activity->id;
+            $date->date = $request->date[$i];
+            $date->save();
+        }
         redirect(route('activities.index'));
     }
 

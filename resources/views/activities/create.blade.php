@@ -36,7 +36,7 @@
                     <div class="panel-body">
                         <div class="tab-content" id="datemenu">
                             <div class="input-group date tab-pane fade in active" id="datetimepicker1">
-                                {!! Form::hidden('date', null, ['class' => 'form-control', 'name' => 'date']) !!}
+                                {!! Form::hidden('date[0]', null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
         var $i = 2;
         function addDate() {
             //var $picker = $('<div> <p>coucou' + $i + '</p> un test </div>');
-            var $picker = $('<div class="input-group date tab-pane fade in activate" id="datetimepicker' + $i + '"> <input class="form-control" name="date" type="hidden"> </div>');
+            var $picker = $('<div class="input-group date tab-pane fade in activate" id="datetimepicker' + $i + '"> <input class="form-control" name="date[' + ($i-1) + ']" type="hidden"> </div>');
             $picker.appendTo($("#datemenu"));
             var $dropdown = $('<li><a data-toggle="pill" href="#datetimepicker' + $i + '">date n°' + $i + '</a></li>');
             $dropdown.appendTo($("#dropmenupick"));
