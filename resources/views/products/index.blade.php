@@ -5,15 +5,19 @@
             @if(Auth::check() && Auth::user()->status === 1)
                 <a href=" {{ route('products.create') }}" class="btn btn-primary">Créer un nouveau produit</a>
             @endif
+            <?php $category = 2;?>
             @foreach($productList as $product)
+                @if($product->id_categories != $category)
+                    <p> {{ $product->id_categories }}</p>
+                @endif
+                <?php $category = $product->id_categories; ?>
                 @if(!$loop->first)
                     <hr>
                 @endif
-                    <a href="{{ route('products.show', $product) }}"><h3>{{ $product->name }}</h3></a>
-                    <p>{{ $product->description }}</p>
-                    <p>{{ $product->price }}</p>
-                    <p>{{ $product->quantity }}</p>
-                    <p>Created {{ $product->created_at->diffForHumans() }}</p>
+                <a href="{{ route('products.show', $product) }}" class="text-info"><u><h3>{{ $product->name }}</h3></u></a>
+                {{ Form::label('description', $product->description, ['class' => 'text-center form-control']) }}
+                <p>Prix : {{ $product->price }}€</p>
+                <p>Quantité : {{ $product->quantity }}.</p>
             @endforeach
 
         </div>

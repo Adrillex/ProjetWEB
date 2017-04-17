@@ -19,7 +19,7 @@
                 {!! Form::number('price', null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('quantity', 'Quantiter :') !!}
+                {!! Form::label('quantity', 'Quantité :') !!}
                 {!! Form::number('quantity', null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
