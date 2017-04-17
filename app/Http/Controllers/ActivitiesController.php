@@ -37,6 +37,7 @@ class ActivitiesController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->date);
         $request->merge(['id_user' => Auth::user()->id]);
         $activity = Activity::create($request->all());
         $date = new Date();
