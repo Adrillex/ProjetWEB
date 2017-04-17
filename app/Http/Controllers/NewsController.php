@@ -25,7 +25,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.create');
+        $id_user = 1;
+        return view('news.create', compact('id_user'));
     }
 
     /**

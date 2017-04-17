@@ -3,6 +3,7 @@
     <div class="content">
         <h2 class="col-md-6 col-md-offset-3">Créer une nouvelle New</h2>
         {!! Form::open(['route' => 'news.store']) !!}
+        {!! Form::hidden('id_user', $id_user) !!}
         <div class="col-md-6 col-md-offset-3">
             <div class="form-group">
                 {!! Form::label('title', 'Titre de l\'article') !!}
@@ -11,10 +12,6 @@
             <div class="form-group">
                 {!! Form::label('content', 'Contenu de l\'article') !!}
                 {!! Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => 'Ecrivez votre article']) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::label('id_user', 'Entrer votre ID') !!}
-                {!! Form::text('id_user', null, ['class' => 'form-control', 'placeholder' => 'Ecrivez votre id']) !!}
             </div>
         </div>
         <div class="col-md-1 col-md-offset-8">

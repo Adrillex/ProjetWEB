@@ -9,7 +9,7 @@
     </div>
     <div class="content">
 
-        <div class="col-md-1 col-md-offset-6">
+        <div class="col-md-1 col-md-offset-8">
             <a href="{{route('news.create')}}" class="btn btn-primary">Créer une New</a>
         </div>
     </div>
