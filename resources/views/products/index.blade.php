@@ -2,7 +2,9 @@
 @section('content')
     <div class="content">
         <div class="col-md-6 col-md-offset-3">
-            <a href=" {{ route('products.create') }}" class="btn btn-primary">Créer un article</a>
+            @if(Auth::check() && Auth::user()->status === 1)
+                <a href=" {{ route('products.create') }}" class="btn btn-primary">Créer un nouveau produit</a>
+            @endif
             @foreach($productList as $product)
                 @if(!$loop->first)
                     <hr>
