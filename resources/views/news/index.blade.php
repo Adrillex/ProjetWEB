@@ -4,7 +4,7 @@
     <div class="content">
         @foreach($news as $new)
             <div class="col-md-offset-2">
-                <h3>{{$new->title}}</h3>
+                <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
                 <p>{{$new->content}}</p>
             </div>
             <div class="col-md-offset-8">
