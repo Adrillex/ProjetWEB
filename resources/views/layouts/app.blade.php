@@ -78,8 +78,8 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées
                                         <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Voir les idées</a></li>
-                                        <li><a href="#">Proposer une idée</a></li>
+                                        <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
+                                        <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
                                     </ul>
                                 </li>
                         </ul>
