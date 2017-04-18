@@ -18,7 +18,7 @@ class CreateLikeDateTable extends Migration
             $table->integer('id_date')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_date')->references('id')->on('dates')->onDelete('cascade');
-            $table->primary(['id_user', 'id_date']);
+            $table->unique(['id_user', 'id_date']);
         });
     }
 
