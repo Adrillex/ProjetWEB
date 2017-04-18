@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class SuggestionBox extends Model
 {
+
+    public $table = "suggestion_box";
+
+
     protected $fillable = [
         'title',
         'content',
@@ -15,7 +19,7 @@ class SuggestionBox extends Model
 
     public static $rules = [
         'title' => 'bail | required | max:100',
-        'content' => 'required | min: 100',
+        'content' => 'required | min: 30',
     ];
 
     public function scopeSortSuggestionDesc($query){

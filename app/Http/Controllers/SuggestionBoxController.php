@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\SuggestionBox;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SuggestionBoxController extends Controller
 {
@@ -14,8 +16,13 @@ class SuggestionBoxController extends Controller
      */
     public function index()
     {
-        $suggestionList = News::SortNewsDesc()->get();
-        return view('suggestionBox.index', compact('suggestionList'));
+        $suggestionList = SuggestionBox::SortSuggestionDesc()->get();
+        $user = array();
+        foreach($suggestionList as $suggestion){
+           $user[$suggestion->user_id] = User::where('id', $suggestion->user_id)->first();
+        }
+
+        return view('suggestionBox.index', compact(['suggestionList', 'user']));
     }
 
     /**
@@ -37,6 +44,7 @@ class SuggestionBoxController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, SuggestionBox::$rules);
+        $request->merge(['user_id' => Auth::user()->id]);
         $suggestion = SuggestionBox::create($request->all());
         return redirect(route('suggestionBox.index', $suggestion));
     }
@@ -81,7 +89,7 @@ class SuggestionBoxController extends Controller
 
         $suggestion->update($request->all());
 
-        return redirect(route('suggestion.show', $suggestion ));
+        return redirect(route('suggestionBox.show', $suggestion ));
     }
 
     /**
@@ -95,7 +103,7 @@ class SuggestionBoxController extends Controller
         $suggestion = News::findOrFail($id);
         $suggestion->delete();
 
-        return redirect(route('suggestion.index'));
+        return redirect(route('suggestionBox.index'));
     }
 }
 
