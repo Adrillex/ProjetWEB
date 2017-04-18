@@ -19,8 +19,7 @@ class CreateBuyTable extends Migration
             $table->integer('id_product')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->ondelete('cascade');
             $table->foreign('id_product')->references('id')->on('products')->ondelete('cascade');
-            $table->primary(['id_user', 'id_product']);
-            //$table->timestamps();
+            $table->unique(['id_user', 'id_product']);
         });
     }
 

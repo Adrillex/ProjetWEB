@@ -18,7 +18,7 @@ class CreateLikePicturesTable extends Migration
             $table->integer('id_picture')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_picture')->references('id')->on('pictures')->onDelete('cascade');
-            $table->primary(['id_user', 'id_picture']);
+            $table->unique(['id_user', 'id_picture']);
         });
     }
 
