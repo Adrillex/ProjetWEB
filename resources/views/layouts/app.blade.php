@@ -41,46 +41,47 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <p class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('home') }}">
                         BDE CESi
-                    </p>
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
 
                     <ul class="nav navbar-nav">
-                        <div style="position: relative">
-                            <div class="dropdown" style="float:left;">
-                            <p class="btn dropdown-toggle dropbtn" type="button" data-toggle="dropdown">News
-                                <span class="caret"></span></p>
+                        <li class="dropdown" style="float:left; position: relative;">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News
+                                <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{'news'}}">Voir les News</a></li>
                                 <li><a href="{{'news/create'}}">Créer une New</a></li>
-                            </ul></div>
-                            <div class="dropdown" style="float:left;">
-                            <p class="btn dropdown-toggle" type="button" data-toggle="dropdown">Activités
-                                <span class="caret"></span></p>
+                            </ul>
+                        </li>
+                        <li class="dropdown" style="float:left; position: relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités
+                                <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{'activities'}}">Voir les Activités</a></li>
                                 <li><a href="{{'activities/create'}}">Créer une Activité</a></li>
-                            </ul></div>
-                            <div class="dropdown" style="float:left;">
-                            <p class="btn dropdown-toggle" type="button" data-toggle="dropdown">Shop
-                                <span class="caret"></span></p>
+                            </ul>
+                        </li>
+                        <li class="dropdown" style="float:left; position: relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop
+                                <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{'products'}}">Voir le magasin</a></li>
                                 <li><a href="{{'products/create'}}">Ajouter un nouveau produit</a></li>
-                            </ul></div>
-                            <div class="dropdown" style="float:left;">
-                                <p class="btn dropdown-toggle" type="button" data-toggle="dropdown">Boîte à idées
-                                    <span class="caret"></span></p>
+                            </ul>
+                        </li>
+                        <li class="dropdown" style="float:left; position: relative">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées
+                                    <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#">Voir les idées</a></li>
                                     <li><a href="#">Proposer une idée</a></li>
-                                </ul></div>
-                        </div>
-
+                                </ul>
+                            </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
