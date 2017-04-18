@@ -19,6 +19,6 @@ class Bde
         if (Auth::check() and Auth::user()->status === 2){
             return $next($request);
         }
-        return redirect('home');
+        return redirect('error');
     }
 }

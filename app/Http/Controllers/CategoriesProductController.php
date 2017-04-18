@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Product;
+use App\CategoryProduct;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class CategoriesProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('bde',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
-    }
     public function index()
     {
-        $productList = Product::SortProductDesc()->get();
-        return view('products.index', compact('productList'));
+        $categoryList = CategoryProduct::SortCategoriesProductDesc()->get();
+        return view('categoriesProduct.index', compact('categoryList'));
     }
 
     /**
@@ -30,8 +25,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $categoryList = Category::SortCategoriesDesc()->pluck('name', 'id')->all();
-        return view('products.create', compact('categoryList'));
+        return view('categoriesProduct.create');
     }
 
     /**
@@ -42,9 +36,8 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
-        return redirect(route('products.show',$product));
-        //return redirect(route('products.index'));
+        CategoryProduct::create($request->all());
+        return redirect(route('categoriesProduct.index'));
     }
 
     /**
@@ -55,8 +48,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        return view('products.show', compact('product'));
+        //
     }
 
     /**
@@ -67,7 +59,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = CategoryProduct::findOrFail($id);
+        return view('categoriesProduct.edit', compact('category'));
     }
 
     /**
@@ -79,7 +72,9 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = CategoryProduct::findOrFail($id);
+        $category->update($request->all());
+        return redirect(route('categoriesProduct.index'));
     }
 
     /**
@@ -90,6 +85,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = CategoryProduct::findOrFail($id);
+        $category->delete();
+        return redirect(route('categoriesProduct.index'));
     }
 }

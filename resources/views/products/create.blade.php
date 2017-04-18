@@ -8,7 +8,7 @@
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::select('id_categories', $categoryList, null, ['class' => 'form-control']) !!}
+                {!! Form::select('category_id', $categoryList, null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('description', 'Description :') !!}

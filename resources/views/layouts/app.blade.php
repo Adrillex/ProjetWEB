@@ -10,7 +10,7 @@
 
 
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>BDE CESi</title>
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -41,20 +41,71 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('home') }}">
+                        BDE CESi
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
+                    @if (Auth::check() and Auth::user()->status === 2)
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown" style="float:left; position: relative;">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{'news'}}">Voir les News</a></li>
+                                    <li><a href="{{'news/create'}}">Créer une New</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" style="float:left; position: relative">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{'activities'}}">Voir les Activités</a></li>
+                                    <li><a href="{{'activities/create'}}">Créer une Activité</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" style="float:left; position: relative">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop
+                                    <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{'products'}}">Voir le magasin</a></li>
+                                    <li><a href="{{'products/create'}}">Ajouter un nouveau produit</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" style="float:left; position: relative">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Voir les idées</a></li>
+                                        <li><a href="#">Proposer une idée</a></li>
+                                    </ul>
+                                </li>
+                        </ul>
+                    @else
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{'news'}}"role="button" aria-expanded="false">News</a>
+                            </li>
+                            <li>
+                                <a href="{{'activities'}}" role="button" aria-expanded="false">Activités</a>
+                            </li>
+                            <li>
+                                <a href="{{'products'}}" role="button" aria-expanded="false">Shop
+                                    <span class="caret"></span></a>
+                            </li>
+                            <li>
+                                <a href="{{'#'}}" role="button" aria-expanded="false">Boîtes à idées
+                                    <span class="caret"></span></a>
+                            </li>
+                        </ul>
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+
                         <!-- Authentication Links -->
+
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
