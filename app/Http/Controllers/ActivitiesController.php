@@ -22,7 +22,13 @@ class ActivitiesController extends Controller
     public function index()
     {
         $activities = Activity::SortActivityDesc()->get();
-        return view('activities.index', compact('activities'));
+        $likedates = Auth::user()->date()->pluck('date_id', 'activity_id');
+        foreach ($activities as $activity){
+            $dates[$activity->id] = $activity->dates;
+        }
+        //if (isset($likedates[2])) echo 'test';
+        //die();
+        return view('activities.index', compact('activities', 'dates', 'likedates'));
     }
 
     /**
@@ -44,11 +50,11 @@ class ActivitiesController extends Controller
     public function store(Request $request)
     {
         //dd($request->date);
-        $request->merge(['id_user' => Auth::user()->id]);
+        $request->merge(['user_id' => Auth::user()->id]);
         $activity = Activity::create($request->all());
         for ($i = 0; $i < sizeof($request->date); $i++){
             $date = new Date();
-            $date->activity = $activity->id;
+            $date->activity_id = $activity->id;
             $date->date = $request->date[$i];
             $date->save();
         }

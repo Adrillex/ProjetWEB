@@ -10,10 +10,14 @@ class Activity extends Model
             'title',
             'content',
             'price',
-            'id_user'
+            'user_id'
     ];
 
     public function scopeSortActivityDesc($query) {
         return $query->orderByDesc('created_at')->limit(5);
+    }
+
+    public function dates(){
+        return $this->hasMany('App\Date');
     }
 }
