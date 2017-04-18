@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\CategoryProduct;
+use App\PictureProduct;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function __construct(){
         $this->middleware('auth');
@@ -43,9 +44,22 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        //get the image from the form
+        $img = Image::make(Input::file('image'));
+        // get the extension
+        $mime = $img->mime();
+        $mime = explode("/", $mime);
+        // save the product
         $product = Product::create($request->all());
+        // get the id of the product saved
+        $product_id = Product::ProductId()->id;
+        // save in the database the image associed to the product
+        PictureProduct::create(['product_id' => $product_id]);
+        // get the id of the image associed to the product
+        $image_id = PictureProduct::PictureId()->id;
+        // save the image with the size and the name
+        $img->resize(300, 200)->save('img/products/' . $image_id . '.' . $mime[1]);
         return redirect(route('products.show',$product));
-        //return redirect(route('products.index'));
     }
 
     /**

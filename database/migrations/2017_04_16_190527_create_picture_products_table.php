@@ -13,12 +13,10 @@ class CreatePictureProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pictureProducts', function (Blueprint $table) {
-            $table->integer('picture_id')->unsigned();
+        Schema::create('picture_products', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('product_id')->unsigned();
-            $table->foreign('picture_id')->references('id')->on('pictures')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unique(['picture_id', 'product_id']);
         });
     }
 
@@ -29,6 +27,6 @@ class CreatePictureProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pictureProducts');
+        Schema::dropIfExists('picture_products');
     }
 }

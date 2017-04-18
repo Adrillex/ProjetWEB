@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -20,6 +21,10 @@ class Product extends Model
 
     public function user(){
         return $this->belongsToMany('App\User', 'buys')->withPivot('quantity');
+    }
+
+    public function scopeProductId(){
+        return DB::table('products')->orderBy('id', 'desc')->first();
     }
 
     public function scopeSortProductDesc($query){
