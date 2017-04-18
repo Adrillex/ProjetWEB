@@ -10,7 +10,7 @@
 
 
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>BDE CESi</title>
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -41,20 +41,53 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    <p class="navbar-brand" href="{{ url('/') }}">
+                        BDE CESi
+                    </p>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <div style="position: relative">
+                            <div class="dropdown" style="float:left;">
+                            <p class="btn dropdown-toggle dropbtn" type="button" data-toggle="dropdown">News
+                                <span class="caret"></span></p>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{'news'}}">Voir les News</a></li>
+                                <li><a href="{{'news/create'}}">Créer une New</a></li>
+                            </ul></div>
+                            <div class="dropdown" style="float:left;">
+                            <p class="btn dropdown-toggle" type="button" data-toggle="dropdown">Activités
+                                <span class="caret"></span></p>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{'activities'}}">Voir les Activités</a></li>
+                                <li><a href="{{'activities/create'}}">Créer une Activité</a></li>
+                            </ul></div>
+                            <div class="dropdown" style="float:left;">
+                            <p class="btn dropdown-toggle" type="button" data-toggle="dropdown">Shop
+                                <span class="caret"></span></p>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{'products'}}">Voir le magasin</a></li>
+                                <li><a href="{{'products/create'}}">Ajouter un nouveau produit</a></li>
+                            </ul></div>
+                            <div class="dropdown" style="float:left;">
+                                <p class="btn dropdown-toggle" type="button" data-toggle="dropdown">Boîte à idées
+                                    <span class="caret"></span></p>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Voir les idées</a></li>
+                                    <li><a href="#">Proposer une idée</a></li>
+                                </ul></div>
+                        </div>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+
                         <!-- Authentication Links -->
+
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>

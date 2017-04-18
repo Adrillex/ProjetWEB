@@ -13,6 +13,10 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('bde',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    }
     public function index()
     {
         $productList = Product::SortProductDesc()->get();

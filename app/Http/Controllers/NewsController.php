@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('bde',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +30,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.create', compact('id_user'));
+        return view('news.create');
     }
 
     /**
@@ -37,9 +41,6 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge(['id_user' => Auth::user()->id]);
-        $news = News::create($request->all());
-        return redirect(route ('news.index'));
     }
 
     /**
@@ -51,7 +52,7 @@ class NewsController extends Controller
     public function show($id)
     {
         $new = News::findOrFail($id);
-        return view('news.show');
+        return view('news.show', compact('new'));
     }
 
     /**
