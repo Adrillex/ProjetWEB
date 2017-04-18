@@ -7,7 +7,8 @@
             <p>Prix : {{ $product->price }} €</p>
 
 
-            {!! Form::open(['route' => ['buy.store', $product]]) !!}
+            {!! Form::open(['route' => 'buy.store']) !!}
+            {!! Form::hidden('product_id', $product->id) !!}
             <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
             {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
             {!! Form::close() !!}
