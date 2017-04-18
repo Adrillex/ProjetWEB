@@ -2,9 +2,6 @@
 @section('content')
     <div class="content">
         <div class="col-md-6 col-md-offset-3">
-            @if(Auth::check() && Auth::user()->status === 1)
-                <a href=" {{ route('products.create') }}" class="btn btn-primary">Créer un nouveau produit</a>
-            @endif
             <?php $category = 2;?>
             @foreach($productList as $product)
                 @if($product->id_categories != $category)
@@ -18,6 +15,7 @@
                 {{ Form::label('description', $product->description, ['class' => 'text-center form-control']) }}
                 <p>Prix : {{ $product->price }}€</p>
                 <p>Quantité : {{ $product->quantity }}.</p>
+                <a href="" class="btn btn-primary btn-danger pull-right">Acheter</a>
             @endforeach
 
         </div>

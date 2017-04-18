@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CategoryProduct;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $categoryList = Category::SortCategoriesDesc()->pluck('name', 'id')->all();
+        $categoryList = CategoryProduct::SortCategoriesProductDesc()->pluck('name', 'id')->all();
         return view('products.create', compact('categoryList'));
     }
 

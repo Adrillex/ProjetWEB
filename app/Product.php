@@ -15,11 +15,11 @@ class Product extends Model
     ];
 
     public function category(){
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\CategoryProduct');
     }
 
     public function user(){
-        return $this->belongsToMany('App\User', 'buy')->withPivot('quantity');
+        return $this->belongsToMany('App\User', 'buys')->withPivot('quantity');
     }
 
     public function scopeSortProductDesc($query){
