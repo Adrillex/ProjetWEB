@@ -19,7 +19,7 @@ class Product extends Model
     }
 
     public function user(){
-        return $this->belongsToMany('App\User', 'buy', 'product_id', 'user_id')->withPivot('quantity');
+        return $this->belongsToMany('App\User', 'buy')->withPivot('quantity');
     }
 
     public function scopeSortProductDesc($query){
