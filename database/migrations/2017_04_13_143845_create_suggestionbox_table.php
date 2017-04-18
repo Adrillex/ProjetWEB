@@ -13,7 +13,7 @@ class CreateSuggestionBoxTable extends Migration
      */
     public function up()
     {
-        Schema::create('suggestion_box', function (Blueprint $table) {
+        Schema::create('suggestionbox', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('content');
@@ -33,6 +33,6 @@ class CreateSuggestionBoxTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suggestion_box');
+        Schema::dropIfExists('suggestionbox');
     }
 }
