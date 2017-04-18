@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\LikeSuggestion;
 use App\SuggestionBox;
 use App\User;
 use Illuminate\Http\Request;
@@ -58,7 +59,11 @@ class SuggestionBoxController extends Controller
     {
         $suggestion=SuggestionBox::findOrFail($id);
         $user = User::where('id', $suggestion->user_id)->first();
-        return view('suggestionBox.show', compact(['suggestion', 'user']));
+        $current = Auth::user()->id;
+        $liked = LikeSuggestion::where('user_id', $current)
+            ->where('suggestion_id', $id)
+            ->first();
+        return view('suggestionBox.show', compact(['suggestion', 'user', 'liked']));
     }
 
     /**
@@ -83,12 +88,9 @@ class SuggestionBoxController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, News::$rules);
-
+        $this->validate($request, suggestionBox::$rules);
         $suggestion = SuggestionBox::findOrFail($id);
-
         $suggestion->update($request->all());
-
         return redirect(route('suggestionBox.show', $suggestion ));
     }
 

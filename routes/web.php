@@ -26,4 +26,5 @@ Route::resource('/news', 'NewsController');
 Route::resource('/categories', 'CategoriesController');
 Route::resource('/categoriesProduct', 'CategoriesProductController');
 Route::resource('/suggestionBox', 'SuggestionBoxController');
+Route::resource('/likeSuggestion', 'LikeSuggestionController', ['except' =>['index', 'show', 'edit', 'create']]);
 Route::resource('/buy', 'BuyController');
