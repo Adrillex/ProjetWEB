@@ -10,4 +10,6 @@ class LikeDate extends Model
         'user_id',
         'date_id'
     ];
+
+    public $timestamps=false;
 }

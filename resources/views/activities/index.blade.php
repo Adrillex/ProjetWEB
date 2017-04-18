@@ -4,9 +4,9 @@
     <div class="container">
         <a href="{{ route('activities.create') }}" class="btn btn-primary">Creer une nouvelle Activité</a>
         @foreach($activities as $activity)
-            <div class="well" style="margin-top: 20px">
+            <div class="well" style="margin-top: 20px; padding: 5px">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" style="text-align: center">
                         <a href="{{ route('activities.show', $activity) }}"><h3 style="margin-top: 0%">{{ $activity->title }}</h3></a>
                     </div>
                     <div class="col-sm-4">
@@ -17,21 +17,50 @@
                             <h4>date de l'évènement :</h4>
                             <h4>{{ $dates[$activity->id][0]->date }}</h4>
                             @if(isset($likedates[$activity->id]))
-                                <button class="btn btn-default">je ne participe plus</button>
+                                {{ Form::open(['method' => 'DELETE', 'route' => ['likeDates.destroy', $likedates[$activity->id]]]) }}
+                                    {{ Form::submit('je ne participe plus', ['class' => 'btn btn-default']) }}
+                                {{ Form::close() }}
                             @else
-                                <button class="btn btn-default">je participe !</button>
+                                {{ Form::open(['route' => ['likeDates.store']]) }}
+                                    {{ Form::hidden('date_id', $dates[$activity->id][0]->id) }}
+                                    {{ Form::submit('je participe !', ['class' => 'btn btn-default']) }}
+                                {{ Form::close() }}
                             @endif
                         @else
-                            <h4>dates proposées :</h4>
-                            @if(isset($likedates[$activity->id]))
-                                <?php $liked = $activity->id?>
-                            @else
-                                <?php $liked = -1 ?>
-                            @endif
-                            @for($i=0; $i< sizeof($dates[$activity->id]); $i++)
-                                <h4>{{ $dates[$activity->id][$i]->date }}</h4>
-                                @if($liked === true && )
-                            @endfor
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center">dates proposées</th>
+                                    <th style="text-align: center">vote</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if(isset($likedates[$activity->id]))
+                                    <?php $liked = $likedates[$activity->id]?>
+                                @else
+                                    <?php $liked = -1 ?>
+                                @endif
+                                @for($i=0; $i< sizeof($dates[$activity->id]); $i++)
+                                    <tr>
+                                        <td>{{ $dates[$activity->id][$i]->date }}</td>
+                                        <td>
+                                            @if($liked === $dates[$activity->id][$i]->id)
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            @else
+                                                @if($liked != -1)
+                                                    {{ Form::open(['method' => 'PUT', 'route' => ['likeDates.update', $likedates[$activity->id]]]) }}
+                                                @else
+                                                    {{ Form::open(['route' => 'likeDates.store']) }}
+                                                @endif
+                                                {{ Form::hidden('date_id' , $dates[$activity->id][$i]->id) }}
+                                                    {{Form::button('<i class="glyphicon glyphicon-plus"></i>', array('type' => 'submit', 'class' => 'btn btn-default btn-xs'))}}
+                                                {{ Form::close() }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endfor
+                                </tbody>
+                            </table>
                         @endif
                     </div>
                 </div>
