@@ -6,8 +6,8 @@
             {{ Form::label('description', $product->description, ['class' => 'text-center form-control']) }}
             <p>Prix : {{ $product->price }} €</p>
 
-            {!! Form::open(['route' => 'buy.store']) !!}
-            {!! Form::hidden('product_id', $product->id) !!}
+
+            {!! Form::open(['route' => ['buy.store', $product]]) !!}
             <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
             {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
             {!! Form::close() !!}

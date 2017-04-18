@@ -36,7 +36,7 @@ class BuyController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
         $request->merge(['user_id' => Auth::user()->id]);
         Buy::create($request->all());
