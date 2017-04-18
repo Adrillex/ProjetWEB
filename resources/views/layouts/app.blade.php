@@ -54,32 +54,30 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{'news'}}">Voir les News</a></li>
-                                    <li><a href="{{'news/create'}}">Créer une New</a></li>
+                                    <li><a href="{{url('news')}}">Voir les News</a></li>
+                                    <li><a href="{{url('news/create')}}">Créer une New</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" style="float:left; position: relative">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{'activities'}}">Voir les Activités</a></li>
-                                    <li><a href="{{'activities/create'}}">Créer une Activité</a></li>
+                                    <li><a href="{{url('activities')}}">Voir les Activités</a></li>
+                                    <li><a href="{{url('activities/create')}}">Créer une Activité</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" style="float:left; position: relative">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop
-                                    <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop</a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{'products'}}">Voir le magasin</a></li>
-                                    <li><a href="{{'products/create'}}">Ajouter un nouveau produit</a></li>
+                                    <li><a href="{{url('products')}}">Voir le magasin</a></li>
+                                    <li><a href="{{url('products/create')}}">Ajouter un nouveau produit</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" style="float:left; position: relative">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées
-                                        <span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées</a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Voir les idées</a></li>
-                                        <li><a href="#">Proposer une idée</a></li>
+                                        <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
+                                        <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
                                     </ul>
                                 </li>
                         </ul>
@@ -123,11 +121,13 @@
                                             Logout
                                         </a>
 
+
+
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                </ul>
+                                </ul>@yield('linkShop')
                             </li>
                         @endif
                     </ul>

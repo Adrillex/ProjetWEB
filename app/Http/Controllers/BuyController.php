@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Buy;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BuyController extends Controller
 {
@@ -13,7 +16,8 @@ class BuyController extends Controller
      */
     public function index()
     {
-        return view('buy.index');
+        $user = User::find(Auth::user()->id);
+        return view('buy.index', compact('user'));
     }
 
     /**
@@ -29,12 +33,14 @@ class BuyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $request->merge(['user_id' => Auth::user()->id]);
+        Buy::create($request->all());
+        return redirect(route('buy.index'));
     }
 
     /**

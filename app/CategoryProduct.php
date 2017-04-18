@@ -12,7 +12,7 @@ class CategoryProduct extends Model
             'name'
     ];
 
-    //for the foreign key of the suggestion
+    //for the foreign key of the product
     public function product(){
         return $this->hasMany('App\Product');
     }

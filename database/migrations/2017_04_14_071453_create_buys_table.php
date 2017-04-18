@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBuyTable extends Migration
+class CreateBuysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateBuyTable extends Migration
      */
     public function up()
     {
-        Schema::create('buy', function (Blueprint $table) {
-            $table->integer('id');
+        Schema::create('buys', function (Blueprint $table) {
+            $table->integer('quantity');
             $table->integer('user_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
@@ -30,6 +30,6 @@ class CreateBuyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buy');
+        Schema::dropIfExists('buys');
     }
 }
