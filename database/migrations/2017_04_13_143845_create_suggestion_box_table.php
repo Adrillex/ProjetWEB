@@ -17,10 +17,11 @@ class CreateSuggestionBoxTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('content');
-            $table->integer('id_category')->unsigned();
-            $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('status');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

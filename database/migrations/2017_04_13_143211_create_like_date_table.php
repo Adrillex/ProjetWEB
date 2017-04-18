@@ -14,11 +14,11 @@ class CreateLikeDateTable extends Migration
     public function up()
     {
         Schema::create('like_dates', function (Blueprint $table) {
-            $table->integer('id_user')->unsigned();
-            $table->integer('id_date')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_date')->references('id')->on('dates')->onDelete('cascade');
-            $table->unique(['id_user', 'id_date']);
+            $table->integer('user_id')->unsigned();
+            $table->integer('date_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('date_id')->references('id')->on('dates')->onDelete('cascade');
+            $table->unique(['user_id', 'date_id']);
         });
     }
 

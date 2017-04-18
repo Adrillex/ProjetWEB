@@ -17,10 +17,10 @@ class CreateCommentariesTable extends Migration
             $table->increments('id');
             $table->text('content');
             $table->date('creation_date');
-            $table->integer('id_activity')->unsigned();
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_activity')->references('id')->on('activities')->onDelete('cascade');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('activity_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             //$table->timestamps(creation_date);
         });
     }

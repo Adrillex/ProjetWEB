@@ -15,11 +15,11 @@ class CreateLikeSuggestionsTable extends Migration
     {
         Schema::create('like_suggestions', function (Blueprint $table) {
             $table->boolean('isLiking');
-            $table->integer('id_suggestion')->unsigned();
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_suggestion')->references('id')->on('suggestion_box')->onDelete('cascade');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->unique(['id_user', 'id_suggestion']);
+            $table->integer('suggestion_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->foreign('suggestion_id')->references('id')->on('suggestion_box')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unique(['user_id', 'suggestion_id']);
         });
     }
 

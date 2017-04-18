@@ -16,8 +16,8 @@ class CreateDatesTable extends Migration
         Schema::create('dates', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('date');
-            $table->integer('activity')->unsigned();
-            $table->foreign('activity')->references('id')->on('activities')->onDelete('cascade');
+            $table->integer('activity_id')->unsigned();
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
         });
     }
 

@@ -14,11 +14,11 @@ class CreateSubscribeTable extends Migration
     public function up()
     {
         Schema::create('subscribe', function (Blueprint $table) {
-            $table->integer('id_user')->unsigned();
-            $table->integer('id_activity')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_activity')->references('id')->on('activities')->onDelete('cascade');
-            $table->primary(['id_user', 'id_activity']);
+            $table->integer('user_id')->unsigned();
+            $table->integer('activity_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
+            $table->unique(['user_id', 'activity_id']);
         });
     }
 

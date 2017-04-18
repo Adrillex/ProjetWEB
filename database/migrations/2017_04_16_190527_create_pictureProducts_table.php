@@ -14,11 +14,11 @@ class CreatePictureProductsTable extends Migration
     public function up()
     {
         Schema::create('pictureProducts', function (Blueprint $table) {
-            $table->integer('id_picture')->unsigned();
-            $table->integer('id_product')->unsigned();
-            $table->foreign('id_picture')->references('id')->on('pictures')->onDelete('cascade');
-            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
-            $table->unique(['id_picture', 'id_product']);
+            $table->integer('picture_id')->unsigned();
+            $table->integer('product_id')->unsigned();
+            $table->foreign('picture_id')->references('id')->on('pictures')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unique(['picture_id', 'product_id']);
         });
     }
 
