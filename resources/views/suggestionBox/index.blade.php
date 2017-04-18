@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <a href="{{ route('news.create') }}" class = "btn btn-primary">Ajouter une nouvelle idée</a>
+        <a href="{{ route('suggestion.create') }}" class = "btn btn-primary">J'ai une idée!</a>
         @foreach($suggestionList as $suggestion)
             @if(!$loop->first)
                 <hr>

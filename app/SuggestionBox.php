@@ -9,8 +9,8 @@ class SuggestionBox extends Model
     protected $fillable = [
         'title',
         'content',
-        'id_category',
-        'id_user'
+        'category_id',
+        'user_id'
     ];
 
     public static $rules = [

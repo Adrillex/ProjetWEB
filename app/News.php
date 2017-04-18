@@ -9,6 +9,6 @@ class News extends Model
     protected $fillable = [
         'title',
         'content',
-        'id_user'
+        'user_id'
     ];
 }
