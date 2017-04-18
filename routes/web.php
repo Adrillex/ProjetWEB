@@ -24,4 +24,5 @@ Route::resource('/activities', 'ActivitiesController');
 Route::resource('/products', 'ProductsController');
 Route::resource('/news', 'NewsController');
 Route::resource('/categories', 'CategoriesController');
+Route::resource('/categoriesProduct', 'CategoriesProductController');
 Route::resource('/suggestionBox', 'SuggestionBoxController');

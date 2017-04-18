@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class CategoryProduct extends Model
 {
     public $timestamps = false;
 
@@ -13,11 +13,11 @@ class Category extends Model
     ];
 
     //for the foreign key of the suggestion
-    public function suggestionBox(){
-        return $this->hasMany('App\SuggestionBox');
+    public function product(){
+        return $this->hasMany('App\Product');
     }
 
-    public function scopeSortCategoriesDesc($query){
+    public function scopeSortCategoriesProductDesc($query){
         return $query->orderByDesc('name');
     }
 }
