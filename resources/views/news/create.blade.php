@@ -3,7 +3,6 @@
     <div class="content">
         <h2 class="col-md-6 col-md-offset-3">Créer une nouvelle New</h2>
         {!! Form::open(['route' => 'news.store']) !!}
-        {!! Form::hidden('id_user', $id_user) !!}
         <div class="col-md-6 col-md-offset-3">
             <div class="form-group">
                 {!! Form::label('title', 'Titre de l\'article') !!}

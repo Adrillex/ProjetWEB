@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use Auth;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -25,7 +26,6 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $id_user = 1;
         return view('news.create', compact('id_user'));
     }
 
@@ -37,6 +37,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge(['id_user' => Auth::user()->id]);
         $news = News::create($request->all());
         return redirect(route ('news.index'));
     }
@@ -50,7 +51,7 @@ class NewsController extends Controller
     public function show($id)
     {
         $new = News::findOrFail($id);
-        return view('news.show', compact('new'));
+        return view('news.show');
     }
 
     /**
@@ -62,8 +63,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         $new = News::findOrFail($id);
-        $id_user = 1;
-        return view('news.edit', compact('new', 'id_user'));
+        return view('news.edit', compact('new'));
     }
 
     /**
