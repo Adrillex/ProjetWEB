@@ -34,13 +34,11 @@ class BuyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $request->merge(['user_id' => Auth::user()->id]);
-        $request->merge(['product_id' => $id]);
         Buy::create($request->all());
         return redirect(route('buy.index'));
     }

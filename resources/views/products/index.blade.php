@@ -14,8 +14,11 @@
                 <a href="{{ route('products.show', $product) }}" class="text-info"><u><h3>{{ $product->name }}</h3></u></a>
                 {{ Form::label('description', $product->description, ['class' => 'text-center form-control']) }}
                 <p>Prix : {{ $product->price }}€</p>
-                <p>Quantité : {{ $product->quantity }}.</p>
-                <a href="" class="btn btn-primary btn-danger pull-right">Acheter</a>
+                    {!! Form::open(['route' => 'buy.store']) !!}
+                    {!! Form::hidden('product_id', $product->id) !!}
+                    <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
+                    {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
+                    {!! Form::close() !!}
             @endforeach
 
         </div>
