@@ -2,13 +2,12 @@
 
 @section('content')
     <div class="container">
-        <a href="{{ route('categories.create') }}" class="btn btn-primary">Creer une nouvelle catégorie</a>
-        @foreach($categoryList as $category)
+        <a href="{{ route('activities.create') }}" class="btn btn-primary">Creer une nouvelle Activité</a>
+        @foreach($activities as $activity)
             @if(!$loop->first)
                 <hr>
             @endif
-            <a href="{{ route('category.show', $category) }}"><h3>{{ $category->name }}</h3></a>
-            <p>Posted {{ $news->created_at->diffForHumans() }}</p>
+            <a href="{{ route('activities.show', $activity) }}"><h3>{{ $activity->title }}</h3></a>
         @endforeach
     </div>
 @endsection

@@ -12,4 +12,8 @@ class Activity extends Model
             'price',
             'id_user'
     ];
+
+    public function scopeSortActivityDesc($query) {
+        return $query->orderByDesc('created_at')->limit(5);
+    }
 }

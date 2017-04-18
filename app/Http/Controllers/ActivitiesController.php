@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class ActivitiesController extends Controller
 {
 
-    public function _construct(){
+    public function __construct(){
         $this->middleware('auth');
-        $this->middleware('Bde',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+        $this->middleware('bde',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +21,8 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        return view('activities.index');
+        $activities = Activity::SortActivityDesc()->get();
+        return view('activities.index', compact('activities'));
     }
 
     /**
