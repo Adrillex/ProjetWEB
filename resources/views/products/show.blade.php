@@ -14,7 +14,7 @@
 
             <a href="{{ route('products.index') }}" class="btn btn-primary pull-right">Retourner au magasin</a>
             @if(Auth::check() && Auth::user()->status===1)
-                <a href="{{ route('products.edit', $product) }}" class="btn btn-primary pull-right">Editer le produuit</a>
+                <a href="{{ route('products.edit', $product) }}" class="btn btn-primary pull-right">Editer le produit</a>
                 {!! Form::open(['method' => 'DELETE', 'route' => ['products.destroy', $product->id]]) !!}
                 {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-right'] ) !!}
                 {!! Form::close() !!}
