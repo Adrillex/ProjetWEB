@@ -17,7 +17,6 @@ class SuggestionBoxController extends Controller
     public function index()
     {
         $suggestionList = SuggestionBox::SortSuggestionDesc()->get();
-        $user = array();
         foreach($suggestionList as $suggestion){
            $user[$suggestion->user_id] = User::where('id', $suggestion->user_id)->first();
         }
@@ -57,8 +56,9 @@ class SuggestionBoxController extends Controller
      */
     public function show($id)
     {
-        $suggestion=findOrFail($id);
-        return view('suggestionBox.show', compact('suggestion'));
+        $suggestion=SuggestionBox::findOrFail($id);
+        $user = User::where('id', $suggestion->user_id)->first();
+        return view('suggestionBox.show', compact(['suggestion', 'user']));
     }
 
     /**
@@ -69,7 +69,7 @@ class SuggestionBoxController extends Controller
      */
     public function edit($id)
     {
-        $suggestion=findOrFail($id);
+        $suggestion=SuggestionBox::findOrFail($id);
         return view('suggestionBox.edit', compact('suggestion'));
     }
 
@@ -100,9 +100,8 @@ class SuggestionBoxController extends Controller
      */
     public function destroy($id)
     {
-        $suggestion = News::findOrFail($id);
+        $suggestion = SuggestionBox::findOrFail($id);
         $suggestion->delete();
-
         return redirect(route('suggestionBox.index'));
     }
 }
