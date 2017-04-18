@@ -13,8 +13,8 @@ class Category extends Model
     ];
 
     //for the foreign key of the suggestion
-    public function suggestion(){
-        return $this->hasMany('App\Suggestion');
+    public function suggestionBox(){
+        return $this->hasMany('App\SuggestionBox');
     }
 
     //for the foreign key of the products
