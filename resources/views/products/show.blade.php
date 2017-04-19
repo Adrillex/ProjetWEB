@@ -4,6 +4,13 @@
         <div class="col-md-6 col-md-offset-3">
             <h3 class="text-info"><u>{{ $product->name }}</u></h3>
             {{ Form::label('description', $product->description, ['class' => 'text-center form-control']) }}
+
+            @foreach($imageList[$product->id] as $image)
+                @if(isset($image))
+                    {{ Form::image('img/products/' . $image->id . '.PNG') }}
+                @endif
+            @endforeach
+
             <p>Prix : {{ $product->price }} €</p>
 
 

@@ -71,7 +71,8 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        return view('products.show', compact('product'));
+        $imageList[$id] = Product::find($id)->picture;
+        return view('products.show', compact('product', 'imageList'));
     }
 
     /**
@@ -105,6 +106,20 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< Updated upstream
         //
+=======
+        $product = Product::findOrFail($id);
+        $images = Product::findOrFail($id)->picture;
+        foreach ($images as $image){
+            if(isset($image)){
+                File::delete('img/products/' . $image->id . '.PNG');
+            }
+        }
+        $product->user()->detach($id);
+        //$product->save();
+        $product->delete();
+        return redirect(route('products.index'));
+>>>>>>> Stashed changes
     }
 }

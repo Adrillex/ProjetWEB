@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Buy;
+use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,14 @@ class BuyController extends Controller
      */
     public function store(Request $request)
     {
+        // get the id of the product
+        $productId = $request->all()['product_id'];
+        // get the quantity of the product in store
+        $quantityProduct = Product::where(['id' => $productId])->get();;
+        // get the difference
+        $quantity = ($quantityProduct[0]->quantity) - ($request->all()['quantity']);
+        // update the quantity in the store
+        Product::where(['id' => $productId])->update(['quantity' => $quantity]);
         $request->merge(['user_id' => Auth::user()->id]);
         Buy::create($request->all());
         return redirect(route('buy.index'));
@@ -74,7 +83,18 @@ class BuyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // get the quantity of the product bought 5
+        $quantityBuy = Buy::where(['product_id' => $id])->get();
+        // get the difference between the old and the new quantity of the product bought 10
+        $quantityBought = ($request->all()['quantity']) - $quantityBuy[0]->quantity;
+        // get the quantity of the product store
+        $quantityProduct = Product::where(['id' => $id])->get();
+        // get the difference between the old and the new quantity of the product stored
+        $quantity = $quantityProduct[0]->quantity - $quantityBought;
+
+        Product::where(['id' => $id])->update(['quantity' => $quantity]);
+        Buy::where(['product_id' => $id])->update($request->only(['quantity']));
+        return redirect(route('buy.index'));
     }
 
     /**
@@ -85,6 +105,7 @@ class BuyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Buy::where(['product_id' => $id])->delete();
+        return redirect(route('buy.index'));
     }
 }
