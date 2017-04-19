@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Commentary;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class CommentariesController extends Controller
 {
@@ -12,7 +16,7 @@ class CommentariesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($activity)
     {
         return view('commentaries.create');
     }
@@ -25,7 +29,11 @@ class CommentariesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $time = Carbon::now()->toDateTimeString();
+        $request->merge(['user_id' => Auth::user()->id, 'creation_date' => $time]);
+        Commentary::create($request->all());
+        redirect(back());
+        return redirect(route('activities.show', $request->activity_id));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Commentary;
 use App\Date;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
@@ -90,7 +91,14 @@ class ActivitiesController extends Controller
         }
         //dd($likedates[2][0]);
 
-        return view('activities.show', compact('activity', 'dates', 'likedates'));
+        //Get commentaries of the current activity
+        $userlist = Array();
+        $commentaries=Commentary::where('activity_id', $id);
+        foreach($commentaries as $commentary){
+            $userlist[$commentary->user_id] = User::where('id', $commentary->user_id);
+    }
+
+        return view('activities.show', compact('activity', 'dates', 'likedates', 'commentaries', 'userlist'));
     }
 
     /**

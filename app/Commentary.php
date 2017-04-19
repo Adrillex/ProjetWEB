@@ -14,4 +14,8 @@ class Commentary extends Model
     ];
 
     public $timestamps = false;
+
+    public static $rules = [
+        'content' => 'required',
+    ];
 }
