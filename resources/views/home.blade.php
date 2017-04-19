@@ -33,15 +33,15 @@
                             @if ($increment===0)
                             <div class="item active">
                                 <div class="carousel-content">
-                                    <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
-                                    <p style="color: black;">{{$new->content}}</p>
+                                    <h3 style="text-align: center;"><a href={{route('news.show', $new)}} >{{$new->title}}</a></h3>
+                                    <p style="color: black; text-align: center;">{{$new->content}}</p>
                                 </div>
                             </div>
                             @else
                             <div class="item">
                                 <div class="carousel-content">
-                                    <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
-                                    <p style="color: black;">{{$new->content}}</p>
+                                    <h3 style="text-align: center;"><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
+                                    <p style="color: black; text-align: center;">{{$new->content}}</p>
                                 </div>
                             </div>
                             @endif
