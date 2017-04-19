@@ -84,16 +84,16 @@
                     @else
                         <ul class="nav navbar-nav">
                             <li>
-                                <a href="{{'news'}}"role="button" aria-expanded="false">News</a>
+                                <a href="{{url('news')}}"role="button" aria-expanded="false">News</a>
                             </li>
                             <li>
-                                <a href="{{'activities'}}" role="button" aria-expanded="false">Activités</a>
+                                <a href="{{url('activities')}}" role="button" aria-expanded="false">Activités</a>
                             </li>
                             <li>
-                                <a href="{{'products'}}" role="button" aria-expanded="false">Shop</a>
+                                <a href="{{url('products')}}" role="button" aria-expanded="false">Shop</a>
                             </li>
                             <li>
-                                <a href="{{'#'}}" role="button" aria-expanded="false">Boîtes à idées</a>
+                                <a href="{{url('suggestionBox')}}" role="button" aria-expanded="false">Boîtes à idées</a>
                             </li>
                         </ul>
                     @endif
