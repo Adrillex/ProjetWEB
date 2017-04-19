@@ -24,10 +24,48 @@
         </div>
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Banderole News</div>
+                <div id="carouselText" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <?php $increment = 0?>
+                        @foreach($news->reverse() as $id=>$new)
+                            @if ($increment===0)
+                                <li data-target="#carouselText" data-slide-to="{!!$increment!!}" class="active"></li>
+                            @else
+                                <li data-target="#carouselText" data-slide-to="{!!$increment!!}"></li>
+                            @endif
+                            <?php $increment += 1?>
+                        @endforeach
+                    </ol>
 
-                <div class="panel-body">
-                    Avec du texte pour juste avoir une idée de quoi mettre
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <?php $increment = 0?>
+                        @foreach($news->reverse() as $id =>$new)
+                            @if ($increment===0)
+                            <div class="item active">
+                            @else
+                            <div class="item">
+                            @endif
+                            <?php $increment += 1?>
+                                <img src="http://ipehantifaxista.org/wp-content/uploads/2015/02/fond-gris.jpg" alt="">
+                                <div class="carousel-caption">
+                                    <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
+                                    <p>{{$new->content}}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carouselText" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carouselText" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -37,4 +75,11 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $('#carouselText').carousel()
+    </script>
+
 @endsection
