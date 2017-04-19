@@ -93,7 +93,7 @@
                                 <a href="{{'products'}}" role="button" aria-expanded="false">Shop</a>
                             </li>
                             <li>
-                                <a href="{{'#'}}" role="button" aria-expanded="false">Boîtes à idées</a>
+                                <a href="{{'suggestionBox'}}" role="button" aria-expanded="false">Boîtes à idées</a>
                             </li>
                         </ul>
                     @endif
@@ -113,7 +113,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{url('profile/show')}}">Editer le profil</a>
+                                        <a href="{{route('profile.show', Auth::user()->id)}}">Voir le profil</a>
                                     </li>
                                     <li>
                                         <a href="{{url('buy')}}">Panier</a>
