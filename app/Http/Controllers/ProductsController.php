@@ -19,10 +19,14 @@ class ProductsController extends Controller
         $this->middleware('auth');
         $this->middleware('bde',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     }
+
     public function index()
     {
         $productList = Product::SortProductDesc()->get();
-        return view('products.index', compact('productList'));
+        foreach ($productList as $product){
+            $imageList[$product->id] = Product::find($product->id)->picture;
+        }
+        return view('products.index', compact('productList', 'imageList'));
     }
 
     /**
@@ -46,9 +50,6 @@ class ProductsController extends Controller
     {
         //get the image from the form
         $img = Image::make(Input::file('image'));
-        // get the extension
-        $mime = $img->mime();
-        $mime = explode("/", $mime);
         // save the product
         $product = Product::create($request->all());
         // get the id of the product saved
@@ -58,7 +59,7 @@ class ProductsController extends Controller
         // get the id of the image associed to the product
         $image_id = PictureProduct::PictureId()->id;
         // save the image with the size and the name
-        $img->resize(300, 200)->save('img/products/' . $image_id . '.' . $mime[1]);
+        $img->resize(300, 200)->save('img/products/' . $image_id . '.PNG');
         return redirect(route('products.show',$product));
     }
 
@@ -82,7 +83,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $categoryList = CategoryProduct::SortCategoriesProductDesc()->pluck('name', 'id')->all();
+        return view('products.edit', compact('product', 'categoryList'));
     }
 
     /**
@@ -94,7 +97,9 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->update($request->all());
+        return redirect(route('products.index'));
     }
 
     /**
@@ -105,6 +110,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect(route('products.index'));
     }
 }

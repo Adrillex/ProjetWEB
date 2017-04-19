@@ -13,11 +13,11 @@
             {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
             {!! Form::close() !!}
 
-            <a href="{{ route('products.index') }}" class="btn btn-primary pull-right">Retourner au magasin</a>
-            @if(Auth::check() && Auth::user()->status===1)
-                <a href="{{ route('products.edit', $product) }}" class="btn btn-primary pull-right">Editer le produit</a>
+            <a href="{{ route('products.index') }}" class="btn btn-success pull-right">Retourner au magasin</a>
+            @if(Auth::check() && Auth::user()->status===2)
+                <a href="{{ route('products.edit', $product) }}" class="btn btn-primary pull-left">Editer le produit</a>
                 {!! Form::open(['method' => 'DELETE', 'route' => ['products.destroy', $product->id]]) !!}
-                {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-right'] ) !!}
+                {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-left'] ) !!}
                 {!! Form::close() !!}
             @endif
         </div>
