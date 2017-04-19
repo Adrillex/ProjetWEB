@@ -113,7 +113,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="#">Editer le profil</a>
+                                        <a href="{{url('profile/show')}}">Editer le profil</a>
                                     </li>
                                     <li>
                                         <a href="{{url('buy')}}">Panier</a>

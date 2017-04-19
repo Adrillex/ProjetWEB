@@ -14,10 +14,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -29,7 +25,7 @@ class HomeController extends Controller
         $suggestionList = SuggestionBox::SortSuggestionDesc()->get();
         $news = News::get();
         $activities = Activity::SortActivityDesc()->get();
-        return view('home', compact('news', 'suggestionList', 'activities'));
+        return view('home', compact('news', 'activities', 'suggestionList'));
     }
     public function error()
     {
