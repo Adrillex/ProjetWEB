@@ -7,12 +7,6 @@
                 <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
                 <p>{{$new->content}}</p>
             </div>
-            <div class="col-md-offset-8">
-                <p>{!! Form::open(['method' => 'DELETE','route' => ['news.destroy', $new->id]]) !!}
-                {!! Form::submit('Supprimer cet article ?', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}</p>
-                <p><a href="{{route('news.edit', $new)}}" class="btn btn-primary">Editer l'article</a></p>
-            </div>
         @endforeach
     </div>
     <div class="content">

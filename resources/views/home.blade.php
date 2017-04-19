@@ -40,18 +40,16 @@
                         @foreach($news->reverse() as $id =>$new)
                             @if ($increment===0)
                             <div class="item active">
-                                <img src="http://ipehantifaxista.org/wp-content/uploads/2015/02/fond-gris.jpg" alt="">
-                                <div class="carousel-caption">
+                                <div class="carousel-content">
                                     <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
-                                    <p>{{$new->content}}</p>
+                                    <p style="color: black;">{{$new->content}}</p>
                                 </div>
                             </div>
                             @else
                             <div class="item">
-                                <img src="http://ipehantifaxista.org/wp-content/uploads/2015/02/fond-gris.jpg" alt="">
-                                <div class="carousel-caption">
+                                <div class="carousel-content">
                                     <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
-                                    <p>{{$new->content}}</p>
+                                    <p style="color: black;">{{$new->content}}</p>
                                 </div>
                             </div>
                             @endif
@@ -60,11 +58,11 @@
                     </div>
 
                     <!-- Controls -->
-                    <a class="left carousel-control" href="#carouselText" role="button" data-slide="prev">
+                    <a class="left carousel-control" href="#carouselText" role="button" data-slide="prev" style="background: none;">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="right carousel-control" href="#carouselText" role="button" data-slide="next">
+                    <a class="right carousel-control" href="#carouselText" role="button" data-slide="next" style="background: none;">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
