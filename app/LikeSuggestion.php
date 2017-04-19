@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class LikeSuggestion extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
-      'isliking'
+        'isliking',
+        'user_id',
+        'suggestion_id'
     ];
 }

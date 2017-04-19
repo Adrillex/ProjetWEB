@@ -62,7 +62,7 @@ class SuggestionBoxController extends Controller
         $current = Auth::user()->id;
         $liked = LikeSuggestion::where('user_id', $current)
             ->where('suggestion_id', $id)
-            ->first();
+            ->first()->isliking;
         return view('suggestionBox.show', compact(['suggestion', 'user', 'liked']));
     }
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\LikeSuggestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class LikeSuggestionController extends Controller
 {
@@ -12,9 +15,18 @@ class LikeSuggestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $valeur)
+    public function store(Request $request)
     {
-        dd($valeur);
+        $id = $request->suggestion_id;
+        $like = new LikeSuggestion();
+        $like->user_id = Auth::user()->id;
+        $like->suggestion_id = $id;
+        if($request->state == "J'aime!")
+            $like->isLiking = 1;
+        else
+            $like->isLiking = 0;
+        $like->save();
+        return route('suggestionBox.show', $id);
     }
 
     /**
