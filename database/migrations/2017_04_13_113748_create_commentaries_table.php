@@ -16,7 +16,7 @@ class CreateCommentariesTable extends Migration
         Schema::create('commentaries', function (Blueprint $table) {
             $table->increments('id');
             $table->text('content');
-            $table->date('creation_date');
+            $table->dateTime('creation_date');
             $table->integer('activity_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');

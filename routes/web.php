@@ -27,6 +27,8 @@ Route::resource('/categories', 'CategoriesController');
 Route::resource('/categoriesProduct', 'CategoriesProductController');
 Route::resource('/suggestionBox', 'SuggestionBoxController', ['except' => ['edit']]);
 Route::resource('/likeSuggestion', 'LikeSuggestionController', ['except' =>['index', 'show', 'edit', 'create']]);
-Route::resource('/likePicture', 'LikePicturesController', ['except' =>['index', 'show', 'edit', 'create']]);
+Route::resource('/likePicture', 'LikePicturesController', ['only' =>['store', 'destroy']]);
 Route::resource('/likeDates', 'LikeDatesController', ['except' =>['index', 'show', 'edit', 'create']]);
 Route::resource('/buy', 'BuyController');
+Route::resource('/pictures', 'PictureController', ['only'=>['store', 'update', 'destroy']]);//Show?
+Route::resource('/activities.commentaries', 'CommentariesController', ['except' => ['index', 'edit', 'update']]);
