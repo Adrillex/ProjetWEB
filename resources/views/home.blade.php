@@ -5,24 +5,20 @@
     <div class="row">
         <div class="col-md-3">
             <ul class="col-md-12" style="list-style:none;"><h3>Vos idées proposées</h3>
-                <li class="col-md-offset-1">
-                    Idée n°1
-                </li>
-                <li class="col-md-offset-1">
-                    Idée n°2
-                </li>
-                <li class="col-md-offset-1">
-                    Idée n°3
-                </li>
-                <li class="col-md-offset-1">
-                    Idée n°4
-                </li>
-                <li class="col-md-offset-1">
-                    Idée n°5
-                </li>
+                @foreach($suggestionList as $suggestion)
+                    @if(!$loop->first)
+                        <hr>
+                    @endif
+                        <li class="col-md-offset-1">
+                            <a href="{{ route('suggestionBox.show', $suggestion)}}"><h3>{{ $suggestion->title }}</h3></a>
+                            <p>{{ $suggestion->content }}</p>
+                        </li>
+
+                @endforeach
             </ul>
         </div>
         <div class="col-md-6">
+            <h3>Dernières Nouvelles</h3>
             <div class="panel panel-default">
                 <div id="carouselText" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
@@ -44,16 +40,22 @@
                         @foreach($news->reverse() as $id =>$new)
                             @if ($increment===0)
                             <div class="item active">
-                            @else
-                            <div class="item">
-                            @endif
-                            <?php $increment += 1?>
                                 <img src="http://ipehantifaxista.org/wp-content/uploads/2015/02/fond-gris.jpg" alt="">
                                 <div class="carousel-caption">
                                     <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
                                     <p>{{$new->content}}</p>
                                 </div>
                             </div>
+                            @else
+                            <div class="item">
+                                <img src="http://ipehantifaxista.org/wp-content/uploads/2015/02/fond-gris.jpg" alt="">
+                                <div class="carousel-caption">
+                                    <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
+                                    <p>{{$new->content}}</p>
+                                </div>
+                            </div>
+                            @endif
+                            <?php $increment += 1?>
                         @endforeach
                     </div>
 
@@ -70,8 +72,11 @@
             </div>
         </div>
         <div class="col-md-3">
-            <h3>Activité de la semaine</h3>
-            <p>Pour l'instant, je vais mettre du texte et placer ce texte dans ce menu home</p>
+            <ul class="col-md-12" style="list-style:none;"><h3>Prochaines Activités</h3>
+            @foreach($activities as $activity)
+                <a href="{{ route('activities.show', $activity) }}"><h3 style="margin-top: 0%">{{ $activity->title }}</h3></a>
+                <p>{{ $activity->content }}</p>
+            @endforeach
         </div>
     </div>
 </div>

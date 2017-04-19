@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\News;
+use App\SuggestionBox;
+use App\Activity;
 
 class HomeController extends Controller
 {
@@ -24,8 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $suggestionList = SuggestionBox::SortSuggestionDesc()->get();
         $news = News::get();
-        return view('home', compact('news'));
+        $activities = Activity::SortActivityDesc()->get();
+        return view('home', compact('news', 'suggestionList', 'activities'));
     }
     public function error()
     {
