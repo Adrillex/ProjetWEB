@@ -26,8 +26,38 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Banderole News</div>
 
-                <div class="panel-body">
-                    Avec du texte pour juste avoir une idée de quoi mettre
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <?php $increment = 0?>
+                        @foreach($news->reverse() as $id =>$new)
+                            @if ($increment===0)
+                            <div class="item active">
+                                <div class="carousel-content">
+                                    <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
+                                    <p style="color: black;">{{$new->content}}</p>
+                                </div>
+                            </div>
+                            @else
+                            <div class="item">
+                                <div class="carousel-content">
+                                    <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
+                                    <p style="color: black;">{{$new->content}}</p>
+                                </div>
+                            </div>
+                            @endif
+                            <?php $increment += 1?>
+                        @endforeach
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carouselText" role="button" data-slide="prev" style="background: none;">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carouselText" role="button" data-slide="next" style="background: none;">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>
