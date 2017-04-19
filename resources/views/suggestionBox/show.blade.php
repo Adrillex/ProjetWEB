@@ -8,10 +8,9 @@
         <p>{{ 'Une idée de ' }}{{ $user->name}} {{$user->surname }}</p>
         <p>{{ $suggestion->content }}</p>
         <p>{{ $suggestion->created_at->diffForHumans() }}</p>
-        <?php $valeur = -1; ?>
+
         @if(isset($liked))
             @if($liked == 0)
-
                 {{ "Vous n'avez pas aimé cette idée. Peut-être avez-vous changé d'avis?" }}
                 {!! Form::open(['method' => 'PUT', 'route' => ['likeSuggestion.update', $suggestion]]) !!}
                     {!! Form::button("J'aime!") !!}
@@ -27,17 +26,12 @@
             {!! Form::close() !!}
         @else
             {{ "Que pensez-vous de cette idée?" }}
-            {!! Form::open(['route' => ['likeSuggestion.store', $suggestion, $valeur]]) !!}
-                <input type="submit" name="login" value="Login">
-                <input type="submit" name="register" value="Register">
-                {!! Form::submit("J'aime!", ['class' => 'btn btn-info']) !!}
+            {!! Form::open(['route' => ['likeSuggestion.store', $suggestion]]) !!}
+                {!! Form::hidden('suggestion_id', $suggestion->id) !!}
+                {!! Form::submit("J'aime!", ['class' => 'btn btn-info', 'name' => 'state']) !!}
+                {!! Form::submit("Je n'aime pas!", ['class' => 'btn btn-warning', 'name' => 'state']) !!}
             {!! Form::close() !!}
-            {!! Form::open(['route' => ['likeSuggestion.store', $suggestion, $valeur]]) !!}
-                {!! Form::submit("Je n'aime pas!", ['class' => 'btn btn-warning']) !!}
-            {!! Form::close() !!}
-
         @endif
-        {!! Form::close() !!}
 
 
         <a href="{{ route('suggestionBox.store', $suggestion) }}" class="btn btn-primary">Éditer la news.</a>
