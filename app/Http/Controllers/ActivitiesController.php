@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\Date;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        $activities = Activity::SortActivityDesc()->get();
+        $activities = Activity::SortActivityDesc()->simplepaginate(10);
         $likedates = Auth::user()->date()->pluck('date_id', 'activity_id');
         foreach ($activities as $activity){
             $dates[$activity->id] = $activity->dates;
@@ -48,7 +49,6 @@ class ActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->date);
         $request->merge(['user_id' => Auth::user()->id]);
         $activity = Activity::create($request->all());
         for ($i = 0; $i < sizeof($request->date); $i++){
@@ -56,6 +56,20 @@ class ActivitiesController extends Controller
             $date->activity_id = $activity->id;
             $date->date = $request->date[$i];
             $date->save();
+        }
+        if (isset($request->numberDay) && $request->numberDay != null){
+            //dd('P' + $request->numberDay + 'D');
+            $times = floor(50 / $request->numberDay) -1 ;
+            dd($times);
+            $Adate = date_create($request->date[0] . ':00');
+            for ($i=0 ; $i< $times ; $i++){
+                $activity = Activity::create($request->all());
+                $Adate->add(new \DateInterval('P' . $request->numberDay . 'D'));
+                $date = new Date();
+                $date->activity_id = $activity->id;
+                $date->date = date_format($Adate, 'Y-m-d H:i:s');
+                $date->save();
+            }
         }
         return redirect(route('activities.index'));
     }
@@ -73,9 +87,9 @@ class ActivitiesController extends Controller
         foreach ($dates as $date){
             $likedates[$date->id] = $date->user;
         }
-        //dd($likedates);
+        //dd($likedates[2][0]);
 
-        return view('activities.show', compact('activity'));
+        return view('activities.show', compact('activity', 'dates', 'likedates'));
     }
 
     /**

@@ -66,5 +66,6 @@
                 </div>
             </div>
         @endforeach
+        <div class="pagination"> {{ $activities->links() }}</div>
     </div>
 @endsection
