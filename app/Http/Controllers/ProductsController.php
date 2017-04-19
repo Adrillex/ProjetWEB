@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CategoryProduct;
 use App\PictureProduct;
 use App\Product;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
@@ -111,6 +112,12 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+        $images = Product::find($id)->picture;
+        foreach ($images as $image){
+            if(isset($image)){
+                File::delete('img/products/' . $image->id . '.PNG');
+            }
+        }
         $product->delete();
         return redirect(route('products.index'));
     }
