@@ -15,7 +15,7 @@
 
             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                 {!! Form::label('category_id', 'Catégorie') !!}
-                {!! Form::select('category_id', array( 1 => 'Leopard'), ['class' => 'form-control']) !!}
+                {!! Form::select('category_id', $catnames, ['class' => 'form-control']) !!}
                 @if($errors->has('title'))
                     <span class="help-block"><strong>{{$errors->first('title')}}</strong></span>
                 @endif
@@ -28,8 +28,6 @@
                     <span class="help-block"><strong>{{$errors->first('content')}}</strong></span>
                 @endif
             </div>
-
-
 
             {!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
             {!! Form::close() !!}

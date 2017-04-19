@@ -14,7 +14,8 @@ class SuggestionBox extends Model
         'title',
         'content',
         'category_id',
-        'user_id'
+        'user_id',
+        'status',
     ];
 
     public static $rules = [

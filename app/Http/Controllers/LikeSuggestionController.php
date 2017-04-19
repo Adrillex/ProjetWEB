@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\LikeSuggestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class LikeSuggestionController extends Controller
@@ -26,7 +27,7 @@ class LikeSuggestionController extends Controller
         else
             $like->isLiking = 0;
         $like->save();
-        return route('suggestionBox.show', $id);
+        return redirect(route('suggestionBox.show', $id));
     }
 
     /**
@@ -38,6 +39,12 @@ class LikeSuggestionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->state == "J'aime!")
+            $like = 1;
+        else
+            $like = 0;
+        DB::update('UPDATE `like_suggestions` SET `isLiking`= ? WHERE user_id=? AND suggestion_id=?', [$like, Auth::user()->id, $id]);
+        return redirect(route('suggestionBox.show', $id));
     }
 
     /**
@@ -48,6 +55,7 @@ class LikeSuggestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::delete('DELETE FROM `like_suggestions` WHERE user_id = ? AND suggestion_id = ?', [Auth::user()->id, $id]);
+        return redirect(route('suggestionBox.show', $id));
     }
 }
