@@ -26,8 +26,7 @@ class ActivitiesController extends Controller
         foreach ($activities as $activity){
             $dates[$activity->id] = $activity->dates;
         }
-        //if (isset($likedates[2])) echo 'test';
-        //die();
+
         return view('activities.index', compact('activities', 'dates', 'likedates'));
     }
 
@@ -58,7 +57,7 @@ class ActivitiesController extends Controller
             $date->date = $request->date[$i];
             $date->save();
         }
-        redirect(route('activities.index'));
+        return redirect(route('activities.index'));
     }
 
     /**
@@ -69,7 +68,14 @@ class ActivitiesController extends Controller
      */
     public function show($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        $dates = $activity->dates;
+        foreach ($dates as $date){
+            $likedates[$date->id] = $date->user;
+        }
+        //dd($likedates);
+
+        return view('activities.show', compact('activity'));
     }
 
     /**
