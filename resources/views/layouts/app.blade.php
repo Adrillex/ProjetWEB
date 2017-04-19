@@ -67,15 +67,15 @@
                                 </ul>
                             </li>
                             <li class="dropdown" style="float:left; position: relative">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{url('products')}}">Voir le magasin</a></li>
                                     <li><a href="{{url('products/create')}}">Ajouter un nouveau produit</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" style="float:left; position: relative">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées</a>
-                                    <ul class="dropdown-menu" role="menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
                                         <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
                                         <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
                                     </ul>
@@ -90,12 +90,10 @@
                                 <a href="{{'activities'}}" role="button" aria-expanded="false">Activités</a>
                             </li>
                             <li>
-                                <a href="{{'products'}}" role="button" aria-expanded="false">Shop
-                                    <span class="caret"></span></a>
+                                <a href="{{'products'}}" role="button" aria-expanded="false">Shop</a>
                             </li>
                             <li>
-                                <a href="{{'#'}}" role="button" aria-expanded="false">Boîtes à idées
-                                    <span class="caret"></span></a>
+                                <a href="{{'#'}}" role="button" aria-expanded="false">Boîtes à idées</a>
                             </li>
                         </ul>
                     @endif
@@ -115,11 +113,17 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="#">Editer le profil</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('buy')}}">Panier</a>
+                                    </li>
+                                    <li>
+                                    <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                                        Se déconnecter
+                                    </a>
 
 
 
@@ -127,7 +131,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                </ul>@yield('linkShop')
+                                </ul>
                             </li>
                         @endif
                     </ul>

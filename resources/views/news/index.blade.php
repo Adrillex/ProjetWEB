@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        @foreach($news as $new)
+        @foreach($news->reverse() as $id=>$new)
             <div class="col-md-offset-2">
                 <h3><a href={{route('news.show', $new)}}>{{$new->title}}</a></h3>
                 <p>{{$new->content}}</p>

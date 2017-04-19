@@ -23,7 +23,3 @@
         </div>
     </div>
 @endsection
-
-@section('linkShop')
-    <a href="{{url('buy')}}">Panier</a>
-@endsection

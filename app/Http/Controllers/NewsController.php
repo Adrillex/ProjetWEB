@@ -41,7 +41,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge(['id_user' => Auth::user()->id]);
+        $request->merge(['user_id' => Auth::user()->id]);
         $news = News::create($request->all());
         return redirect(route ('news.index'));
     }
