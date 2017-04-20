@@ -16,7 +16,7 @@ class Bde
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() and Auth::user()->status === 2){
+        if (Auth::check() and Auth::user()->status == 2){
             return $next($request);
         }
         return redirect('error');

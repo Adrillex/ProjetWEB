@@ -16,7 +16,7 @@ class Cesi
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() and Auth::user()->status === 3){
+        if (Auth::check() and Auth::user()->status == 3){
             return $next($request);
         }
         return redirect('error');
