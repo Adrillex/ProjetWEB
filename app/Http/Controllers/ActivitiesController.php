@@ -63,8 +63,8 @@ class ActivitiesController extends Controller
         }
         if (isset($request->numberDay) && $request->numberDay != null){
             //dd('P' + $request->numberDay + 'D');
-            $times = floor(50 / $request->numberDay) -1 ;
-            dd($times);
+            $times = floor(365 / $request->numberDay) -1 ;
+            //dd($times);
             $Adate = date_create($request->date[0] . ':00');
             for ($i=0 ; $i< $times ; $i++){
                 $activity = Activity::create($request->all());
