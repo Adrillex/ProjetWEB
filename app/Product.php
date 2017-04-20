@@ -23,6 +23,10 @@ class Product extends Model
         return $this->belongsToMany('App\User', 'buys')->withPivot('quantity');
     }
 
+    public function picture(){
+        return $this->hasMany('App\PictureProduct');
+    }
+
     public function scopeProductId(){
         return DB::table('products')->orderBy('id', 'desc')->first();
     }

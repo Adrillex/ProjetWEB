@@ -18,4 +18,8 @@ class Commentary extends Model
     public static $rules = [
         'content' => 'required',
     ];
+
+    protected $casts = [
+        'creation_date' => 'datetime',
+    ];
 }
