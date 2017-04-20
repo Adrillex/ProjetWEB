@@ -29,7 +29,7 @@
         <div class="col-md-offset-8">
 
             <p>
-                <a href="{{'home'}}" class="btn btn-primary">Retour au menu</a>
+                <a href="{{url('home')}}" class="btn btn-primary">Retour au menu</a>
             </p>
             <p>
                 <a href="{{route('profile.edit', $user)}}" class="btn btn-primary">Editer le profil</a>

@@ -85,6 +85,9 @@
                                 <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{route('profile.index')}}">Voir tous les utilisateurs</a>
+                        </li>
                     </ul>
                 @else
                     <ul class="nav navbar-nav">

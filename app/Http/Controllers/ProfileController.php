@@ -80,7 +80,7 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
-        return redirect(route('profile.index'));
+        return redirect()->back();
     }
 
     /**
@@ -93,6 +93,6 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($id);
         $user->destroy($id);
-        return redirect(route('home'));
+        return redirect(route('home.index'));
     }
 }

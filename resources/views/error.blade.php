@@ -9,7 +9,7 @@
 
                     <div class="panel-body">
                         Vous n'êtes pas autorisé à faire ceci
-                        <a href="{{('/home')}}" class="btn btn-primary">Retour au menu</a>
+                        <a href="{{(route('home.index'))}}" class="btn btn-primary">Retour au menu</a>
                     </div>
                 </div>
             </div>
