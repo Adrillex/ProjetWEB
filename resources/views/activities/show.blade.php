@@ -49,7 +49,7 @@
                             {{ Form::image($path) }}
                             <p> Ajouté par :
                                 <?php $user = \App\User::where(['id' => Auth::user()->id])->get();
-                                dd($user->all()->name) ?>
+                                echo ($user->first()->name) ?>
                             </p>
                         @endif
                     @endforeach
