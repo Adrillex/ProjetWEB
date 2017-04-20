@@ -9,9 +9,11 @@
             </div>
         @endforeach
     </div>
-    <div class="content">
-        <div class="col-md-offset-8">
-            <a href="{{route('news.create')}}" class="btn btn-primary">Créer une News</a>
+    @if(isset(Auth::user()->id) && Auth::user()->status == 2)
+        <div class="content">
+            <div class="col-md-offset-8">
+                <a href="{{route('news.create')}}" class="btn btn-primary">Créer une News</a>
+            </div>
         </div>
-    </div>
+    @endif
 @endsection

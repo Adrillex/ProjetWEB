@@ -15,6 +15,11 @@ class Picture extends Model
         'status'
     ];
 
+    public static $rules = [
+        'activity_id' => 'bail | required | max:100',
+        'user_id' => 'required | min: 30',
+    ];
+
     public function scopePictureId(){
         return DB::table('pictures')->orderBy('id', 'desc')->first();
     }

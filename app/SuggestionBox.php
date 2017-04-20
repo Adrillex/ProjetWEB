@@ -21,7 +21,9 @@ class SuggestionBox extends Model
     public static $rules = [
         'title' => 'bail | required | max:100',
         'content' => 'required | min: 30',
-    ];
+        'category_id' => 'required',
+        'user_id' => 'required',
+        ];
 
     public function scopeSortSuggestionDesc($query){
         return $query -> orderByDesc('created_at')->limit(5);

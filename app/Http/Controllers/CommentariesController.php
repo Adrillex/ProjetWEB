@@ -31,9 +31,11 @@ class CommentariesController extends Controller
      */
     public function store(Request $request)
     {
-        $time = Carbon::now()->toDateTimeString();
-        $request->merge(['user_id' => Auth::user()->id, 'creation_date' => $time]);
-        Commentary::create($request->all());
+        if(!$request->content == null){
+            $time = Carbon::now()->toDateTimeString();
+            $request->merge(['user_id' => Auth::user()->id, 'creation_date' => $time]);
+            Commentary::create($request->all());
+        }
         return redirect(route('activities.show', $request->activity_id));
     }
 

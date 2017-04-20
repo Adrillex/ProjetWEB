@@ -13,6 +13,10 @@ class PictureProduct extends Model
         'product_id'
     ];
 
+    public static $rules = [
+        'product_id' => 'bail | required',
+    ];
+
     public function product(){
         return $this->belongsTo('App\Products');
     }

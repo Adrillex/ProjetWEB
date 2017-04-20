@@ -28,6 +28,7 @@ class ActivitiesController extends Controller
     public function index()
     {
         session_start();
+        $activities = array();
         if (isset($_GET['nav'])){
             $nav = $_GET['nav'];
             $_SESSION['nav'] = $_GET['nav'];
