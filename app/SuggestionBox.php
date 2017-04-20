@@ -27,6 +27,16 @@ class SuggestionBox extends Model
         return $query -> orderByDesc('created_at')->limit(5);
     }
 
+    public function scopeSortSuggestionAsc($query){
+        return $query -> orderByAsc('created_at')->limit(5);
+    }
+
+    public function scopeSortSuggestionStatus($query, $status){
+        return $query -> where('status', $status)->limit(5);
+    }
+
+
     public function scopeSortSuggestionPopular($query){
+
     }
 }

@@ -8,6 +8,7 @@ use App\User;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class SuggestionBoxController extends Controller
 {
@@ -15,11 +16,13 @@ class SuggestionBoxController extends Controller
         $this->middleware('auth', ['except' => ['index']]);
         $this->middleware('bde', ['only' => ['update', 'destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $suggestionList = SuggestionBox::SortSuggestionDesc()->get();
@@ -27,7 +30,8 @@ class SuggestionBoxController extends Controller
            $user[$suggestion->user_id] = User::where('id', $suggestion->user_id)->first();
            $textList[$suggestion->id] = $this->getText($this->getScore($suggestion->id)['voters'], $this->getScore($suggestion->id)['score']);
         }
-        return view('suggestionBox.index', compact(['suggestionList', 'user', 'textList']));
+        $statusList = [0 => "Proposée",1 => "Acceptée", 2=> "Rejetée"];
+        return view('suggestionBox.index', compact(['suggestionList', 'user', 'textList', 'statusList']));
     }
 
     /**
@@ -72,8 +76,7 @@ class SuggestionBoxController extends Controller
         $current = Auth::user()->id;
         $liked = LikeSuggestion::where('user_id', $current)->where('suggestion_id', $id)->first();
 
-        $score = $this->getScore($id)['score'];
-        $text = $this->getText($this->getScore($id)['voters']);
+        $text = $this->getText($this->getScore($id)['voters'], $this->getScore($id)['score']);
 
         $statusList = ["Proposée","Acceptée", "Rejetée"];
         return view('suggestionBox.show', compact(['suggestion', 'user', 'liked', 'text', 'statusList']));

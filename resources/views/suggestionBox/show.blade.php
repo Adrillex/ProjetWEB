@@ -42,7 +42,7 @@
                 {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-right']) !!}
             {!! Form::close() !!}
 
-            {!! Form::model(['route' => ['suggestionBox.update', $suggestion], "method" => "PUT"]) !!}
+            {!! Form::open(['route' => ['suggestionBox.update', $suggestion], "method" => "PUT"]) !!}
                 {!! Form::select('status', $statusList, ['class' => 'form-control']) !!}
                 {!! Form::submit("Valider", ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
