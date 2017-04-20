@@ -76,13 +76,17 @@ class ActivitiesController extends Controller
             }
         }
         $input = Input::file('image');
+        $path = 'img/activities/';
         if(isset($input)){
+            if(!isset($path)){
+                File::makeDirectory($path);
+            }
             //get the image from the form
             $img = Image::make($input);
             // get the id of the activity saved
             $activity_id = Activity::ActivityId()->id;
             // save the image with the size and the name
-            $img->resize(300, 200)->save('img/activities/' . $activity_id . '.PNG');
+            $img->resize(300, 200)->save($path . $activity_id . '.PNG');
         }
 
         return redirect(route('activities.index'));
@@ -101,8 +105,7 @@ class ActivitiesController extends Controller
         foreach ($dates as $date){
             $likedates[$date->id] = $date->user;
         }
-        //dd($likedates[2][0]);
-
+        $imageList = Picture::where('activity_id', $id)->get();
         //Get commentaries of the current activity
         $userList = Array();
         $commentaries=Commentary::where('activity_id', $id)->get();
@@ -110,7 +113,7 @@ class ActivitiesController extends Controller
             $userList[$commentary->user_id] = User::where('id', $commentary->user_id)->first();
         }
 
-        return view('activities.show', compact('activity', 'dates', 'likedates', 'commentaries', 'userList'));
+        return view('activities.show', compact('activity', 'dates', 'likedates', 'commentaries', 'userList', 'imageList'));
     }
 
     /**

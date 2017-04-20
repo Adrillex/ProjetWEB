@@ -11,7 +11,8 @@ class Picture extends Model
 
     protected $fillable = [
         'activity_id',
-        'user_id'
+        'user_id',
+        'status'
     ];
 
     public function scopePictureId(){

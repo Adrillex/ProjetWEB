@@ -42,7 +42,31 @@
 
         <div class="container">
             <div class="col-md-6 col-md-offset-3">
-                <h2 class="col-md-6 col-md-offset-3">Ajouter une image</h2>
+                <div class="form-group">
+                    @foreach($imageList as $image)
+                        <?php $path = 'img/activities/' .$image['id'] . '.PNG'; ?>
+                        @if(File::exists($path))
+                            {{ Form::image($path) }}
+                            <p> Ajouté par :
+                                <?php $user = \App\User::where(['id' => Auth::user()->id])->get();
+                                dd($user->all()->name) ?>
+                            </p>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+                    <h2>Ajouter une image</h2>
+                    {!! Form::open(['route' => 'pictures.store', 'files' => true])  !!}
+                    {!! Form::hidden('activity_id', $activity->id) !!}
+                    {!! Form::file('image') !!}
+                    {!! Form::submit('Valider', ['class' => 'btn btn-primary pull-right']) !!}
+                    {!! Form::close() !!}
+                </div>
             </div>
         </div>
         <div class="container">

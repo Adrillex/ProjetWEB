@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Picture;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class PictureController extends Controller
 {
@@ -17,24 +19,23 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
-        $activity = $request->id;
-        //get the image from the form
+        // get the image from the form
         $img = Image::make(Input::file('image'));
-        // get the extension
-        $mime = $img->mime();
-        $mime = explode("/", $mime);
-        // save in the database the image associated to the activity.
+        // get the id of the activity
+        $id = $request->activity_id;
         // A user status equal to three means he's a cesi employee. The picture is automatically validated (status = 1)
         $user = Auth::user();
         if($user->status == 3)
-            Picture::create(['activity_id' => $request->id, 'user_id' => $user->id, 'status' => 0]);
+            $status = 1;
         else
-            Picture::create(['activity_id' => $request->id, 'user_id' => $user->id, 'status' => 1]);
+            $status = 0;
+        Picture::create(['activity_id' => $id, 'user_id' => $user->id, 'status' => $status]);
+
         // get the id of the picture
         $image_id = Picture::PictureId()->id;
         // save the image with the size and the name
-        $img->save('img/activities/' . $image_id . '.' . $mime[1]);
-        return redirect(route('activity.show', $activity));
+        $img->resize(300, 200)->save('img/activities/' . $image_id . '.PNG');
+        return redirect(route('activities.show', $id));
     }
 
     /**
