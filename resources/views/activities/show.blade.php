@@ -37,8 +37,8 @@
             @endforeach
         </div>
         <div class="container">
-            <h2 class="col-md-6 col-md-offset-3">Espace commentaire</h2>
-            <div class="content">
+            <div class="container">
+                <h2 class="col-md-6 col-md-offset-3">Espace commentaire</h2>
                 <h3 class="col-md-6 col-md-offset-3">Ajouter un commentaire</h3>
                 {!! Form::open(['route' => 'commentaries.store']) !!}
                 <div class="col-md-6 col-md-offset-3">
@@ -54,9 +54,21 @@
                     </div>
                 </div>
             </div>
-
-
-
+            <div class="col-md-6 col-md-offset-3">
+                @foreach($commentaries as $commentary)
+                    @if(!$loop->first)
+                        <hr>
+                    @endif
+                    @if(Auth::user()->status == 2)
+                        {{Form::open(['method' => 'DELETE','route' => ['commentaries.destroy', $commentary->id]])}}
+                            {{Form::submit('Supprimer', ['class' => 'btn btn-danger btn-sm pull-right'])}}
+                        {{Form::close()}}
+                    @endif
+                    <p>{{ 'Posté par ' }}{{ $userList[$commentary->user_id]->name}} {{$userList[$commentary->user_id]->surname }}</p>
+                    <p>{{ $commentary->content }}</p>
+                    <p>{{ $commentary->creation_date->diffForHumans()}}</p>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

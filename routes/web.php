@@ -31,5 +31,5 @@ Route::resource('/likePicture', 'LikePicturesController', ['only' =>['store', 'd
 Route::resource('/likeDates', 'LikeDatesController', ['except' =>['index', 'show', 'edit', 'create']]);
 Route::resource('/buy', 'BuyController');
 Route::resource('/pictures', 'PictureController', ['only'=>['store', 'update', 'destroy']]);//Show?
-Route::resource('/commentaries', 'CommentariesController', ['except' => ['index', 'edit', 'update']]);
+Route::resource('/commentaries', 'CommentariesController', ['except' => ['index', 'edit', 'update', 'show']]);
 Route::resource('/profile', 'ProfileController', ['except' =>['create', 'store']]);

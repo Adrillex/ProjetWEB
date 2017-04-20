@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Commentary;
 use App\Date;
+use App\User;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,13 +93,13 @@ class ActivitiesController extends Controller
         //dd($likedates[2][0]);
 
         //Get commentaries of the current activity
-        $userlist = Array();
-        $commentaries=Commentary::where('activity_id', $id);
-        foreach($commentaries as $commentary){
-            $userlist[$commentary->user_id] = User::where('id', $commentary->user_id);
-    }
+        $userList = Array();
+        $commentaries=Commentary::where('activity_id', $id)->get();
+        foreach($commentaries as $commentary) {
+            $userList[$commentary->user_id] = User::where('id', $commentary->user_id)->first();
+        }
 
-        return view('activities.show', compact('activity', 'dates', 'likedates', 'commentaries', 'userlist'));
+        return view('activities.show', compact('activity', 'dates', 'likedates', 'commentaries', 'userList'));
     }
 
     /**
