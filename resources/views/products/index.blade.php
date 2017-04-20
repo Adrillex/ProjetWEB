@@ -2,7 +2,7 @@
 @section('content')
     <div class="content">
         <div class="col-md-6 col-md-offset-3">
-            <?php $category = 2;?>
+            <?php $category = -1;?>
             @foreach($productList as $product)
 
                 @if($product->id_categories != $category)
@@ -13,10 +13,6 @@
                 @if(!$loop->first)
                     <hr>
                 @endif
-<<<<<<< Updated upstream
-                <a href="{{ route('products.show', $product) }}" class="text-info"><u><h3>{{ $product->name }}</h3></u></a>
-                {{ Form::label('description', $product->description, ['class' => 'text-center form-control']) }}
-=======
 
                 <a href="{{ route('products.show', $product) }}" class="text-info"><u><h3>{{ $product->name }}</h3></u></a>
                 <div class="form-group">
@@ -28,7 +24,6 @@
                         @endif
                     @endforeach
                 </div>
->>>>>>> Stashed changes
                 <p>Prix : {{ $product->price }}€</p>
 
                     @if($product->quantity === 0)
@@ -39,8 +34,6 @@
                     <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
                     {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
                     {!! Form::close() !!}
-<<<<<<< Updated upstream
-=======
                     @endif
 
                 @if(Auth::check() && Auth::user()->status===2)
@@ -49,7 +42,7 @@
                     {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-left'] ) !!}
                     {!! Form::close() !!}
                 @endif
->>>>>>> Stashed changes
+
             @endforeach
 
         </div>
