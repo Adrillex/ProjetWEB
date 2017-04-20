@@ -27,12 +27,34 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        $activities = Activity::SortActivityDesc()->simplepaginate(10);
-        $likedates = Auth::user()->date()->pluck('date_id', 'activity_id');
-        foreach ($activities as $activity){
-            $dates[$activity->id] = $activity->dates;
+        session_start();
+        if (isset($_GET['nav'])){
+            $nav = $_GET['nav'];
+            $_SESSION['nav'] = $_GET['nav'];
+        } else{
+            if (isset($_SESSION['nav'])){
+                $nav = $_SESSION['nav'];
+            }else{
+                $nav = 'coming';
+                $_SESSION['nav'] = 'coming';
+            }
+
         }
-        return view('activities.index', compact('activities', 'dates', 'likedates'));
+
+        if ($nav == 'coming'){
+            $Adates = Date::RetrieveComingDates()->simplepaginate(10);
+            //dd($activities[0]);
+        }
+        elseif ($nav = 'past'){
+            $Adates = Date::RetrievePastDates()->simplepaginate(10);
+            $_SESSION['nav'] = 'past';
+        }
+        $likedates = Auth::user()->date()->pluck('date_id', 'activity_id');
+        for ($i=0; $i<sizeof($Adates); $i++){
+            $activities[$Adates[$i]->activity_id] = Activity::find($Adates[$i]->activity_id);
+            $dates[$Adates[$i]->activity_id] = $activities[$Adates[$i]->activity_id]->dates;
+        }
+        return view('activities.index', compact('Adates', 'dates', 'likedates', 'activities', 'nav'));
     }
 
     /**

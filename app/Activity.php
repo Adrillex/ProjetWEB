@@ -17,6 +17,7 @@ class Activity extends Model
     public function scopeSortActivityDesc($query) {
         return $query->orderByDesc('created_at');
     }
+
     public function scopeSortActivityDescHome($query) {
         return $query->orderByDesc('created_at')->limit(5);
     }
