@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home.index');
 Route::get('/error', 'HomeController@error');
+Route::get('/legalNotice', 'HomeController@legalNotice');
 
 Route::resource('/activities', 'ActivitiesController');
 Route::resource('/products', 'ProductsController');

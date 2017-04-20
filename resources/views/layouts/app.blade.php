@@ -30,7 +30,7 @@
 <div id="app">
     <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #191E46;">
         <a class="navbar-brand" href="{{ url('home') }}">
-            <img src="../logo_bde.png" alt="" style=" height: 260%; margin-top: -30%;">
+            <img src={{ URL::to('/') }}/logo_bde.png alt="" style=" height: 260%; margin-top: -30%;">
         </a>
         <div class="container">
             <div class="navbar-header">
@@ -71,22 +71,40 @@
                                 <li><a href="{{url('activities/create')}}">Créer une Activité</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown" style="float:left; position: relative">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{url('products')}}">Voir le magasin</a></li>
-                                <li><a href="{{url('products/create')}}">Ajouter un nouveau produit</a></li>
-                            </ul>
+                        <li>
+                            <a href="{{url('products')}}" role="button" aria-expanded="false">Shop</a>
                         </li>
                         <li class="dropdown" style="float:left; position: relative">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
                                 <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
+                                <li><a href="{{url('categories')}}">Voir les catégories</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="{{route('profile.index')}}">Voir tous les utilisateurs</a>
+                        </li>
+                    </ul>
+                @elseif (Auth::check() and Auth::user()->status == 3)
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{url('news')}}"role="button" aria-expanded="false">News</a>
+                        </li>
+                        <li>
+                            <a href="{{url('activities')}}" role="button" aria-expanded="false">Activités</a>
+                        </li>
+                        <li class="dropdown" style="float:left; position: relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{url('products')}}">Voir le magasin</a></li>
+                                <li><a href="{{url('products/create')}}">Ajouter un nouveau produit</a></li>
+                                <li><a href="{{url('categoriesProduct')}}">Voir les catégories</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown" style="float:left; position: relative">
+                            <a href="{{url('suggestionBox')}}"  role="button" aria-expanded="false">Boîte à idées</a>
                         </li>
                     </ul>
                 @else
@@ -155,5 +173,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment-with-locales.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bootstrap.datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 @yield('script')
+<footer>
+    <div>
+        <a href="{{url('legalNotice')}}" style="text-align: center">Mentions légales</a>
+    </div>
+</footer>
 </body>
 </html>

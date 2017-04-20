@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return view('error');
     }
+    public function legalNotice()
+    {
+        return view('legalNotice');
+    }
 }

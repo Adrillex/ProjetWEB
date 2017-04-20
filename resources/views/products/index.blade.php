@@ -51,7 +51,7 @@
                         {!! Form::close() !!}
                     @endif
 
-                @if(Auth::check() && Auth::user()->status != 1)
+                @if(Auth::check() && Auth::user()->status == 3)
                     <a href="{{ route('products.edit', $product) }}" class="btn btn-primary pull-left">Editer le produit</a>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['products.destroy', $product->id]]) !!}
                     {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-left'] ) !!}
