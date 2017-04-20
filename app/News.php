@@ -11,4 +11,8 @@ class News extends Model
         'content',
         'user_id'
     ];
+
+    public function scopeSortSuggestionDesc($query){
+        return $query -> orderByDesc('created_at')->limit(5);
+    }
 }

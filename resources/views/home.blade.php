@@ -24,7 +24,7 @@
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
                             <?php $increment = 0?>
-                            @foreach($news->reverse() as $id=>$new)
+                            @foreach($news as $id=>$new)
                                 @if ($increment===0)
                                     <li data-target="#carouselText" data-slide-to="{!!$increment!!}" class="active"></li>
                                 @else
@@ -37,7 +37,7 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
                             <?php $increment = 0?>
-                            @foreach($news->reverse() as $id =>$new)
+                            @foreach($news as $id =>$new)
                                 @if ($increment===0)
                                     <div class="item active">
                                         <div class="carousel-content">

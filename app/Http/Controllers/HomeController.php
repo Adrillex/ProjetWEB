@@ -23,8 +23,8 @@ class HomeController extends Controller
     public function index()
     {
         $suggestionList = SuggestionBox::SortSuggestionDesc()->get();
-        $news = News::get();
-        $activities = Activity::SortActivityDesc()->get();
+        $news = News::SortSuggestionDesc()->get();
+        $activities = Activity::SortActivityDescHome()->get();
         return view('home', compact('news', 'suggestionList', 'activities'));
     }
     public function error()
