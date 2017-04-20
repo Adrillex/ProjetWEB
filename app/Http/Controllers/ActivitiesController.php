@@ -41,7 +41,6 @@ class ActivitiesController extends Controller
             }
 
         }
-
         if ($nav == 'coming'){
             $Adates = Date::RetrieveComingDates()->simplepaginate(10);
             //dd($activities[0]);
