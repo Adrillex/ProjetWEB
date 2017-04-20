@@ -8,7 +8,8 @@ use App\User;
 class ProfileController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth', ['only'=>'edit', 'show', 'destroy', 'update']);
+        $this->middleware('bde', ['only'=>'index']);
     }
 
     /**
@@ -19,7 +20,8 @@ class ProfileController extends Controller
 
     public function index()
     {
-        //
+        $users = User::get();
+        return view ('profile.index', compact('users'));
     }
 
     /**
@@ -78,7 +80,7 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
-        return redirect(route('profile.show'));
+        return redirect(route('profile.index'));
     }
 
     /**

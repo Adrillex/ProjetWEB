@@ -1,4 +1,7 @@
 @section('content')
+    @if (Auth::check() and Auth::user()->id != $user->id)
+        <meta http-equiv="refresh" content="0; url=/error"/>
+    @else
     <div class="content">
         <h2 class="col-md-6 col-md-offset-3">Ajouter un commentaire</h2>
         {!! Form::open(['route' => 'commentaries.store']) !!}
@@ -14,4 +17,5 @@
                 </div>
             </div>
     </div>
+    @endif
 @endsection
