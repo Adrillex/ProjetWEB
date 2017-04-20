@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="content">
-        <h2 class="col-md-6 col-md-offset-3">Créer une nouvelle New</h2>
+        <h2 class="col-md-6 col-md-offset-3">Éditer une News</h2>
         {!! Form::open(['method' => 'put', 'route' => ['news.update', $new]]) !!}
         <div class="col-md-6 col-md-offset-3">
             <div class="form-group">
