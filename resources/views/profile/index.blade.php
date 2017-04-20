@@ -11,15 +11,15 @@
                         {!! Form::label('name', $user->surname, ['style' =>'color : #B40202;']) !!}
                     </p>
                 </div>
-                @if($user->status === 1)
+                @if($user->status == 1)
                     <p>
                         {!! Form::open(['method' => 'put', 'route' => ['profile.update', $user]]) !!}
                         {!! Form::hidden('status', 2) !!}
                         {!! Form::submit('Etudiant lambda, changer en membre du BDE? Cliquez, c\'est adopter', ['class' => 'btn btn-link']) !!}
                         {!! Form::close() !!}</p>
-                @elseif($user->status === 2)
+                @elseif($user->status == 2)
                     <p>{!! Form::label('status', 'Membre du BDE, pas de modification possible') !!}</p>
-                @elseif($user->status === 3)
+                @elseif($user->status == 3)
                     <p>{!! Form::label('status', 'Membre du CESi, pas de modification possible') !!}</p>
                 @endif
             </div>

@@ -25,7 +25,7 @@
                         <div class="carousel-inner" role="listbox">
                             <?php $increment = 0?>
                             @foreach($news as $id =>$new)
-                                @if ($increment===0)
+                                @if ($increment==0)
                                     <div class="item active">
                                         <div class="carousel-content">
                                             <h3 style="text-align: center;"><a href={{route('news.show', $new)}} >{{$new->title}}</a></h3>
