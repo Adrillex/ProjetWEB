@@ -19,7 +19,7 @@ class ProductsController extends Controller
     public function __construct(){
         $this->middleware('auth');
         $this->middleware('cesiOuBde', ['only' => ['create', 'store']]);
-        $this->middleware('cesi',['except' => ['create', 'store', 'index']]);
+        $this->middleware('cesi',['except' => ['create', 'store', 'index', 'show']]);
 
     }
 
