@@ -15,6 +15,14 @@ class Product extends Model
         'category_id'
     ];
 
+    public static $rules = [
+            'name' => 'required|unique:products|max:32',
+            'description' => 'required|min:20',
+            'price' => 'required',
+            'quantity' => 'required',
+            'category_id' => 'required'
+    ];
+
     public function category(){
         return $this->belongsTo('App\CategoryProduct');
     }
