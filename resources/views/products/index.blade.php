@@ -35,7 +35,7 @@
                     {{ $isExist = false }}
                 @endif
 
-                    @if($product->quantity == 0)
+                    @if($product->quantity <= 0)
                         <p class="alert-danger">Rupture de stock.</p>
                     @elseif(!$isExist)
                         <div class="form-group {{ $errors->has('quantity') ? 'has-error' : '' }}">
@@ -49,6 +49,7 @@
                                 @endif
                                 {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
                             {!! Form::close() !!}
+                            <p>Produits en stock : {{ $product->quantity }}</p>
                         </div>
                     @else
                         {!! Form::open(['method' => 'GET', 'route' => 'buy.index']) !!}

@@ -18,9 +18,8 @@ class Product extends Model
     public static $rules = [
             'name' => 'required|unique:products|max:32',
             'description' => 'required|min:20',
-            'price' => 'required',
-            'quantity' => 'required',
-            'category_id' => 'required'
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
     ];
 
     public function category(){

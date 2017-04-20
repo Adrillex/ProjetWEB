@@ -106,6 +106,9 @@ class ActivitiesController extends Controller
             $likedates[$date->id] = $date->user;
         }
         $imageList = Picture::where('activity_id', $id)->get();
+        foreach ($imageList as $image){
+            $userPicture[$image->id] = User::where(['id' => $image->user_id])->get();
+        }
         //Get commentaries of the current activity
         $userList = Array();
         $commentaries=Commentary::where('activity_id', $id)->get();
@@ -113,7 +116,7 @@ class ActivitiesController extends Controller
             $userList[$commentary->user_id] = User::where('id', $commentary->user_id)->first();
         }
 
-        return view('activities.show', compact('activity', 'dates', 'likedates', 'commentaries', 'userList', 'imageList'));
+        return view('activities.show', compact('activity', 'dates', 'likedates', 'commentaries', 'userList', 'imageList', 'userPicture'));
     }
 
     /**

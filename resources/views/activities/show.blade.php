@@ -25,7 +25,18 @@
                 <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-6" style="text-align: center">
                             <h4>{{ $date->date }}</h4>
+                                </div>
+                            @if(Auth::user()->status == 2 && Auth::user()->id == $activity->user_id)
+                                <div class="col-md-6" style="text-align: center">
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['activities.destroy', $activity->id]]) !!}
+                                    {!! Form::submit('Supprimer', ['class' => 'btn btn-danger'] ) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            @endif
+                            </div>
                         </div>
                         <div class="panel-body">
                             <ul class="list-group">
@@ -48,8 +59,7 @@
                         @if(File::exists($path))
                             {{ Form::image($path) }}
                             <p> Ajouté par :
-                                <?php $user = \App\User::where(['id' => Auth::user()->id])->get();
-                                echo ($user->first()->name) ?>
+                                {{ $userPicture[$image->id]->first()->name}}
                             </p>
                         @endif
                     @endforeach
