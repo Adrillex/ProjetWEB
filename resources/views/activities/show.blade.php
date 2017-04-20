@@ -68,7 +68,7 @@
                     @if(!$loop->first)
                         <hr>
                     @endif
-                    @if(Auth::user()->status == 2)
+                    @if(Auth::user()->status == 2 || Auth::user()->id == $userList[$commentary->user_id]->id)
                         {{Form::open(['method' => 'DELETE','route' => ['commentaries.destroy', $commentary->id]])}}
                             {{Form::submit('Supprimer', ['class' => 'btn btn-danger btn-sm pull-right'])}}
                         {{Form::close()}}
