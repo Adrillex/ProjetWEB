@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
-        <a href="{{ route('suggestionBox.create') }}" class = "btn btn-primary">J'ai une idée!</a>
+        @if(Auth::check())
+            <a href="{{ route('suggestionBox.create') }}" class = "btn btn-primary">J'ai une idée!</a>
+        @endif
         @foreach($suggestionList as $suggestion)
             @if(!$loop->first)
                 <hr>
