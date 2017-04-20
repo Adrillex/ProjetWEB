@@ -35,12 +35,13 @@
                 {!! Form::close() !!}
             @endif
         </div>
-
-        {!! Form::open(['method' => 'DELETE', 'route' => ['suggestionBox.destroy', $suggestion]]) !!}
-            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-right']) !!}
-        {!! Form::close() !!}
-
+        
         @if(Auth::user()->status == 2)
+
+            {!! Form::open(['method' => 'DELETE', 'route' => ['suggestionBox.destroy', $suggestion]]) !!}
+                {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-right']) !!}
+            {!! Form::close() !!}
+
             {!! Form::model(['route' => ['suggestionBox.update', $suggestion], "method" => "PUT"]) !!}
                 {!! Form::select('status', $statusList, ['class' => 'form-control']) !!}
                 {!! Form::submit("Valider", ['class' => 'btn btn-primary']) !!}

@@ -101,11 +101,7 @@
                             <a href="{{url('products')}}" role="button" aria-expanded="false">Shop</a>
                         </li>
                         <li class="dropdown" style="float:left; position: relative">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
-                                <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
-                            </ul>
+                            <a href="{{url('suggestionBox')}}"  role="button" aria-expanded="false">Boîte à idées</a>
                         </li>
                     </ul>
             @endif

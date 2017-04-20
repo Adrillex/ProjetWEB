@@ -10,6 +10,7 @@
             <a href="{{ route('suggestionBox.show', $suggestion)}}"><h3>{{ $suggestion->title }}</h3></a>
             <p>{{ 'Une idée de ' }}{{ $user[$suggestion->user_id]->name}} {{$user[$suggestion->user_id]->surname }}</p>
             <p>{{ $suggestion->content }}</p>
+            <p>{{$textList[$suggestion->id]}}</p>
             <p>{{ $suggestion->created_at->diffForHumans() }}</p>
         @endforeach
 

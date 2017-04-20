@@ -11,7 +11,7 @@
     </div>
     <div class="content">
         <div class="col-md-offset-8">
-            <a href="{{route('news.create')}}" class="btn btn-primary">Créer une New</a>
+            <a href="{{route('news.create')}}" class="btn btn-primary">Créer une News</a>
         </div>
     </div>
 @endsection

@@ -25,9 +25,9 @@ class SuggestionBoxController extends Controller
         $suggestionList = SuggestionBox::SortSuggestionDesc()->get();
         foreach($suggestionList as $suggestion){
            $user[$suggestion->user_id] = User::where('id', $suggestion->user_id)->first();
+           $textList[$suggestion->id] = $this->getText($this->getScore($suggestion->id)['voters'], $this->getScore($suggestion->id)['score']);
         }
-
-        return view('suggestionBox.index', compact(['suggestionList', 'user']));
+        return view('suggestionBox.index', compact(['suggestionList', 'user', 'textList']));
     }
 
     /**
@@ -72,18 +72,9 @@ class SuggestionBoxController extends Controller
         $current = Auth::user()->id;
         $liked = LikeSuggestion::where('user_id', $current)->where('suggestion_id', $id)->first();
 
-        $likeScore = likeSuggestion::where('suggestion_id', $id)->where('isLiking', 1)->count();
-        $dislikeScore = likeSuggestion::where('suggestion_id', $id)->where('isLiking', 0)->count();
-        $voters = $likeScore + $dislikeScore;
-        $score = $likeScore - $dislikeScore;
-        switch($voters){
-            case 0: $text = "Personne n'a voté pour cette idée.";
-            break;
-            case 1: $text = 'Une personne a voté pour cette idée. Son score est de ' . $score;
-            break;
-            default: $text = $voters . ' personnes ont voté pour cette idée. Son score est de ' . $score;
-            break;
-        }
+        $score = $this->getScore($id)['score'];
+        $text = $this->getText($this->getScore($id)['voters']);
+
         $statusList = ["Proposée","Acceptée", "Rejetée"];
         return view('suggestionBox.show', compact(['suggestion', 'user', 'liked', 'text', 'statusList']));
     }
@@ -98,7 +89,6 @@ class SuggestionBoxController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request);
         $this->validate($request, suggestionBox::$rules);
         $suggestion = SuggestionBox::findOrFail($id);
         $suggestion->update($request->all());
@@ -116,6 +106,26 @@ class SuggestionBoxController extends Controller
         $suggestion = SuggestionBox::findOrFail($id);
         $suggestion->delete();
         return redirect(route('suggestionBox.index'));
+    }
+
+    private function getText($voters, $score){
+        switch($voters){
+            case 0: $text = "Personne n'a voté pour cette idée.";
+                break;
+            case 1: $text = 'Une personne a voté pour cette idée. Son score est de ' . $score;
+                break;
+            default: $text = $voters . ' personnes ont voté pour cette idée. Son score est de ' . $score;
+                break;
+        }
+        return $text;
+    }
+
+    private function getScore($id){
+        $likeScore = likeSuggestion::where('suggestion_id', $id)->where('isLiking', 1)->count();
+        $dislikeScore = likeSuggestion::where('suggestion_id', $id)->where('isLiking', 0)->count();
+        $voters = $likeScore + $dislikeScore;
+        $score = $likeScore - $dislikeScore;
+        return ['voters' => $voters, 'score' => $score];
     }
 }
 
