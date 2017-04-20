@@ -13,4 +13,8 @@ class Buy extends Model
         'user_id',
         'product_id'
     ];
+
+    public static $rules = [
+            'quantity' => 'required'
+    ];
 }

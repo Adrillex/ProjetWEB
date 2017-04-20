@@ -39,6 +39,7 @@ class BuyController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Buy::$rules);
         // get the id of the product
         $productId = $request->all()['product_id'];
         // get the quantity of the product in store
@@ -46,7 +47,7 @@ class BuyController extends Controller
         // get the difference
         $quantity = ($quantityProduct[0]->quantity) - ($request->all()['quantity']);
         // update the quantity in the store
-        Product::where(['id' => $productId])->update(['quantity' => $quantity]);
+        Product::findOrFail($productId)->update(['quantity' => $quantity]);
         $request->merge(['user_id' => Auth::user()->id]);
         Buy::create($request->all());
         return redirect(route('buy.index'));
@@ -83,16 +84,17 @@ class BuyController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, Buy::$rules);
         // get the quantity of the product bought 5
         $quantityBuy = Buy::where(['product_id' => $id])->get();
         // get the difference between the old and the new quantity of the product bought 10
         $quantityBought = ($request->all()['quantity']) - $quantityBuy[0]->quantity;
         // get the quantity of the product store
-        $quantityProduct = Product::where(['id' => $id])->get();
+        $quantityProduct = Product::findOrFail($id)->get();
         // get the difference between the old and the new quantity of the product stored
         $quantity = $quantityProduct[0]->quantity - $quantityBought;
 
-        Product::where(['id' => $id])->update(['quantity' => $quantity]);
+        Product::findOrFail($id)->update(['quantity' => $quantity]);
         Buy::where(['product_id' => $id])->update($request->only(['quantity']));
         return redirect(route('buy.index'));
     }

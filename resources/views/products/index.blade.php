@@ -38,11 +38,18 @@
                     @if($product->quantity == 0)
                         <p class="alert-danger">Rupture de stock.</p>
                     @elseif(!$isExist)
-                        {!! Form::open(['route' => 'buy.store']) !!}
-                        {!! Form::hidden('product_id', $product->id) !!}
-                        <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
-                        {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
-                        {!! Form::close() !!}
+                        <div class="form-group {{ $errors->has('quantity') ? 'has-error' : '' }}">
+                            {!! Form::open(['route' => 'buy.store']) !!}
+                                {!! Form::hidden('product_id', $product->id) !!}
+                                <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
+                                @if($errors->has('quantity'))
+                                    <span class="help-block">
+                                        <strong> {{ $errors->first('quantity') }}</strong>
+                                    </span>
+                                @endif
+                                {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
+                            {!! Form::close() !!}
+                        </div>
                     @else
                         {!! Form::open(['method' => 'GET', 'route' => 'buy.index']) !!}
                         {!! Form::hidden('product_id', $product->id) !!}

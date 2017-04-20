@@ -56,6 +56,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Product::$rules);
         // save the product
         $product = Product::create($request->all());
 
@@ -115,6 +116,7 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+        $this->validate($request, Product::$rules);
         $product->update($request->all());
 
         $input = Input::file('image');

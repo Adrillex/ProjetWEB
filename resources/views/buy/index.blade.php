@@ -19,14 +19,21 @@
                 <a href="{{ route('products.show', $buy) }}" class="text-info"><u><h3>{{ $buy->name }}</h3></u></a>
                 {!! Form::label('description', $buy->description) !!}
 
-                {!! Form::open(['method' => 'PUT','route' => ['buy.update', $buy->id]]) !!}
-                <p>Prix unitaire : {{ $buy->price }}€</p>
-                @if($buy->pivot->quantity > 1)
-                    <p>Prix : {{ $buy->price * $buy->pivot->quantity }}€</p>
-                @endif
-                {!! Form::submit('Modifier', ['class' => 'btn btn-success']) !!}
-                {!! Form::number('quantity', $buy->pivot->quantity, ['min' => '1', 'max' => $user->quantity]) !!}
-                {!! Form::close() !!}
+                <div class="form-group {{ $errors->has('quantity') ? 'has-error' : '' }}">
+                    {!! Form::open(['method' => 'PUT','route' => ['buy.update', $buy->id]]) !!}
+                        <p>Prix unitaire : {{ $buy->price }}€</p>
+                        @if($buy->pivot->quantity > 1)
+                            <p>Prix : {{ $buy->price * $buy->pivot->quantity }}€</p>
+                        @endif
+                        {!! Form::submit('Modifier', ['class' => 'btn btn-success']) !!}
+                        {!! Form::number('quantity', $buy->pivot->quantity, ['min' => '1', 'max' => $user->quantity]) !!}
+                        @if($errors->has('quantity'))
+                            <span class="help-block">
+                            <strong> {{ $errors->first('quantity') }}</strong>
+                        </span>
+                        @endif
+                    {!! Form::close() !!}
+                </div>
 
                 <p>{!! Form::open(['method' => 'DELETE','route' => ['buy.destroy', $buy->id]]) !!}
                     {!! Form::submit('Supprimer du panier', ['class' => 'btn btn-danger pull-right']) !!}
