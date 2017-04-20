@@ -19,7 +19,7 @@
                         <p>{{ $activity->content }}</p>
                     </div>
                     <div class="col-sm-4" style="text-align: center">
-                        @if(sizeof($dates[$activity->id])===1)
+                        @if(sizeof($dates[$activity->id])==1)
                             <h4>date de l'évènement :</h4>
                             <h4>{{ $dates[$activity->id][0]->date }}</h4>
                             @if(isset($likedates[$activity->id]))
@@ -50,7 +50,7 @@
                                     <tr>
                                         <td>{{ $dates[$activity->id][$i]->date }}</td>
                                         <td>
-                                            @if($liked === $dates[$activity->id][$i]->id)
+                                            @if($liked == $dates[$activity->id][$i]->id)
                                                 <span class="glyphicon glyphicon-ok"></span>
                                             @else
                                                 @if($liked != -1)

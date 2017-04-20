@@ -23,7 +23,7 @@ class PictureProduct extends Model
         $imageList = Array();
         foreach ($productList as $product){
             $id = $product->id;
-            $imageList[$id] = DB::table('picture_products')->where('product_id' === $product->id);
+            $imageList[$id] = DB::table('picture_products')->where('product_id' == $product->id);
             echo $imageList[$id];
         }
         var_dump($imageList);
