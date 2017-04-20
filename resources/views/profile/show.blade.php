@@ -19,11 +19,11 @@
             {!! Form::label('email', 'Mail : ') !!}
             {!! Form::label('email', $user->email) !!}
         </p>
-        @if($user->status === 1)
+        @if($user->status == 1)
         <p>{!! Form::label('status', 'Vous êtes un étudiant lambda du BDE') !!}</p>
-        @elseif($user->status === 2)
+        @elseif($user->status == 2)
         <p>{!! Form::label('status', 'Vous êtes membre du BDE') !!}</p>
-        @elseif($user->status === 3)
+        @elseif($user->status == 3)
         <p>{!! Form::label('status', 'Vous êtes membre du CESi') !!}</p>
         @endif
         <div class="col-md-offset-8">
