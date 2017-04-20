@@ -30,7 +30,7 @@
 <div id="app">
     <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #191E46;">
         <a class="navbar-brand" href="{{ url('home') }}">
-            <img src="logo_bde.png" alt="" style=" height: 260%; margin-top: -30%;">
+            <img src="../logo_bde.png" alt="" style=" height: 260%; margin-top: -30%;">
         </a>
         <div class="container">
             <div class="navbar-header">
