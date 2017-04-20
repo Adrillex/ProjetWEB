@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Buy;
 use App\CategoryProduct;
 use App\PictureProduct;
 use App\Product;
 use File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
 
@@ -28,8 +30,11 @@ class ProductsController extends Controller
         $productList = Product::SortProductDesc()->get();
         foreach ($productList as $product){
             $imageList[$product->id] = Product::findOrFail($product->id)->picture;
+            $categoryList[$product->id] = CategoryProduct::where(['id' => $product->category_id])->first();
+            $buyList[$product->id] = Buy::where(['user_id' => Auth::user()->id, 'product_id' => $product->id])->first();
         }
-        return view('products.index', compact('productList', 'imageList'));
+
+        return view('products.index', compact('productList', 'imageList', 'categoryList', 'buyList'));
     }
 
     /**
@@ -51,18 +56,26 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //get the image from the form
-        $img = Image::make(Input::file('image'));
         // save the product
         $product = Product::create($request->all());
-        // get the id of the product saved
-        $product_id = Product::ProductId()->id;
-        // save in the database the image associed to the product
-        PictureProduct::create(['product_id' => $product_id]);
-        // get the id of the image associed to the product
-        $image_id = PictureProduct::PictureId()->id;
-        // save the image with the size and the name
-        $img->resize(300, 200)->save('img/products/' . $image_id . '.PNG');
+
+        $input = Input::file('image');
+        $path = 'img/prodcuts/';
+        if(isset($input)) {
+            if (!isset($path)) {
+                File::makeDirectory($path);
+            }
+            // get the id of the product saved
+            $product_id = Product::ProductId()->id;
+            // save in the database the image associed to the product
+            PictureProduct::create(['product_id' => $product_id]);
+            // get the id of the image associed to the product
+            $image_id = PictureProduct::PictureId()->id;
+            //get the image from the form
+            $img = Image::make(Input::file('image'));
+            // save the image with the size and the name
+            $img->resize(300, 200)->save($path . $image_id . '.PNG');
+        }
         return redirect(route('products.show',$product));
     }
 
@@ -103,6 +116,22 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->update($request->all());
+
+        $input = Input::file('image');
+        $path = 'img/products/';
+        if(isset($input)) {
+            if (!isset($path)) {
+                File::makeDirectory($path);
+            }
+            PictureProduct::create(['product_id' => $id]);
+            // get the id of the image associed to the product
+            $image_id = PictureProduct::PictureId()->id;
+            //get the image from the form
+            $img = Image::make($input);
+            // save the image with the size and the name
+            $img->resize(300, 200)->save($path . $image_id . '.PNG');
+        }
+
         return redirect(route('products.index'));
     }
 

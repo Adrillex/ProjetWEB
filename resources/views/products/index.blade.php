@@ -2,41 +2,56 @@
 @section('content')
     <div class="content">
         <div class="col-md-6 col-md-offset-3">
-            <?php $category = -1;?>
+            <?php $category = 0;?>
             @foreach($productList as $product)
 
-                @if($product->id_categories != $category)
-                    <p> {{ $product->id_categories }}</p>
-                @endif
+                @if($product->category_id != $category)
+                    <h1>
+                        {{ $categoryList[$product->id]->name }}
+                    </h1>
 
-                <?php $category = $product->id_categories; ?>
+                @endif
+                <?php $category = $product->category_id; ?>
+
                 @if(!$loop->first)
                     <hr>
                 @endif
 
                 <a href="{{ route('products.show', $product) }}" class="text-info"><u><h3>{{ $product->name }}</h3></u></a>
                 <div class="form-group">
-                    {{ Form::label('description', $product->description, ['class' => 'text-center form-control pull-left']) }}
+                    {{ Form::label('description', $product->description, ['class' => 'text-center pull-right']) }}
 
                     @foreach($imageList[$product->id] as $image)
                         @if(isset($image))
-                                {{ Form::image('img/products/' . $image->id . '.PNG'), ['class' => 'pull-right'] }}
+                                {{ Form::image('img/products/' . $image->id . '.PNG'), ['class' => 'pull-left'] }}
                         @endif
                     @endforeach
                 </div>
                 <p>Prix : {{ $product->price }}€</p>
 
-                    @if($product->quantity === 0)
+                @if(isset($buyList[$product->id]))
+                    {{ $isExist = true }}
+                @else
+                    {{ $isExist = false }}
+                @endif
+
+                    @if($product->quantity == 0)
                         <p class="alert-danger">Rupture de stock.</p>
+                    @elseif(!$isExist)
+                        {!! Form::open(['route' => 'buy.store']) !!}
+                        {!! Form::hidden('product_id', $product->id) !!}
+                        <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
+                        {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
+                        {!! Form::close() !!}
                     @else
-                    {!! Form::open(['route' => 'buy.store']) !!}
-                    {!! Form::hidden('product_id', $product->id) !!}
-                    <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
-                    {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
-                    {!! Form::close() !!}
+                        {!! Form::open(['method' => 'GET', 'route' => 'buy.index']) !!}
+                        {!! Form::hidden('product_id', $product->id) !!}
+                        <p>Quantité : {!! Form::number('quantity', '1', ['min' => '1', 'max' => $product->quantity]) !!}</p>
+                        {!! Form::submit('Acheter', ['class' => 'btn btn-danger pull-right'] ) !!}
+                        {!! Form::close() !!}
                     @endif
 
-                @if(Auth::check() && Auth::user()->status===2)
+                @if(Auth::check() && Auth::user()->status != 1)
                     <a href="{{ route('products.edit', $product) }}" class="btn btn-primary pull-left">Editer le produit</a>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['products.destroy', $product->id]]) !!}
                     {!! Form::submit('Supprimer', ['class' => 'btn btn-danger pull-left'] ) !!}

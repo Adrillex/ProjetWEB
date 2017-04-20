@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="col-md-6 col-md-offset-3">
-            {!! Form::model($product, ['route' => ['products.update', $product], 'method' => 'PUT']) !!}
+            {!! Form::model($product, ['route' => ['products.update', $product], 'method' => 'PUT', 'files' => true]) !!}
             <div class="form-group">
                 {!! Form::label('name', 'Nom du produit :') !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
