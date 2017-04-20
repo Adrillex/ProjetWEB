@@ -76,6 +76,8 @@ class ActivitiesController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->price == null)$request->merge(['price' => 0]);
+        //dd($request->price);
         $request->merge(['user_id' => Auth::user()->id]);
         $activity = Activity::create($request->all());
         for ($i = 0; $i < sizeof($request->date); $i++){

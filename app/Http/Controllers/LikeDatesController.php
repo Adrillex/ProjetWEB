@@ -67,7 +67,7 @@ class LikeDatesController extends Controller
      */
     public function edit($id)
     {
-        //
+    //
     }
 
     /**
