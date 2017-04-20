@@ -27,137 +27,134 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top" style="background-color: #191E46;">
-            <a class="navbar-brand" href="{{ url('home') }}">
-                <img src="https://pbs.twimg.com/profile_images/557299226057531392/MNrBiFVj.png" alt="" style=" height: 600%; margin-top: 30%;">
-            </a>
-            <div class="container">
-                <div class="navbar-header">
+<div id="app">
+    <nav class="navbar navbar-default navbar-static-top" style="background-color: #191E46;">
+        <a class="navbar-brand" href="{{ url('home') }}">
+            <img src="https://pbs.twimg.com/profile_images/557299226057531392/MNrBiFVj.png" alt="" style=" height: 600%; margin-top: 30%;">
+        </a>
+        <div class="container">
+            <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
+                <!-- Collapsed Hamburger -->
 
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- Branding Image -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Branding Image -->
 
-                    <a class="navbar-brand" href="{{ url('home') }}">
-                        BDE CESi
-                    </a>
-                </div>
+                <a class="navbar-brand" href="{{ url('home') }}">
+                    BDE CESi
+                </a>
+            </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
-                    <!-- Left Side Of Navbar -->
-                    @if (Auth::check() and Auth::user()->status === 2)
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown" style="float:left; position: relative;">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{url('news')}}">Voir les News</a></li>
-                                    <li><a href="{{url('news/create')}}">Créer une New</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" style="float:left; position: relative">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités
-                                    <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{url('activities')}}">Voir les Activités</a></li>
-                                    <li><a href="{{url('activities/create')}}">Créer une Activité</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" style="float:left; position: relative">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{url('products')}}">Voir le magasin</a></li>
-                                    <li><a href="{{url('products/create')}}">Ajouter un nouveau produit</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown" style="float:left; position: relative">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
-                                        <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
-                                    </ul>
-                                </li>
-                            <li>
-                                <a href="{{url('profile')}}"role="button" aria-expanded="false">Voir tous les inscrits</a>
-                            </li>
-                        </ul>
+                <!-- Left Side Of Navbar -->
+                @if (Auth::check() and Auth::user()->status === 2)
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown" style="float:left; position: relative;">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{url('news')}}">Voir les News</a></li>
+                                <li><a href="{{url('news/create')}}">Créer une New</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" style="float:left; position: relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Activités
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{url('activities')}}">Voir les Activités</a></li>
+                                <li><a href="{{url('activities/create')}}">Créer une Activité</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" style="float:left; position: relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{url('products')}}">Voir le magasin</a></li>
+                                <li><a href="{{url('products/create')}}">Ajouter un nouveau produit</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" style="float:left; position: relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
+                                <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                @else
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{url('news')}}"role="button" aria-expanded="false">News</a>
+                        </li>
+                        <li>
+                            <a href="{{url('activities')}}" role="button" aria-expanded="false">Activités</a>
+                        </li>
+                        <li>
+                            <a href="{{url('products')}}" role="button" aria-expanded="false">Shop</a>
+                        </li>
+                        <li class="dropdown" style="float:left; position: relative">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
+                                <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+            @endif
+            <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+
+                    <!-- Authentication Links -->
+
+                    @if (Auth::guest())
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
                     @else
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="{{url('news')}}"role="button" aria-expanded="false">News</a>
-                            </li>
-                            <li>
-                                <a href="{{url('activities')}}" role="button" aria-expanded="false">Activités</a>
-                            </li>
-                            <li>
-                                <a href="{{url('products')}}" role="button" aria-expanded="false">Shop</a>
-                            </li>
-                            <li class="dropdown" style="float:left; position: relative">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
-                                    <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    @endif
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
 
-                        <!-- Authentication Links -->
-
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">Editer le profil</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('buy')}}">Panier</a>
-                                    </li>
-                                    <li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{route('profile.show', Auth::user()->id)}}">Voir le profil</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('buy')}}">Panier</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Se déconnecter
                                     </a>
 
 
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
             </div>
-        </nav>
-        @yield('content')
-    </div>
+        </div>
+    </nav>
+    @yield('content')
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment-with-locales.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap.datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-        @yield('script')
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment-with-locales.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bootstrap.datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+@yield('script')
 </body>
 </html>
