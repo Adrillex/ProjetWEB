@@ -60,7 +60,7 @@
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{url('news')}}">Voir les News</a></li>
-                                <li><a href="{{url('news/create')}}">Créer une New</a></li>
+                                <li><a href="{{url('news/create')}}">Créer une News</a></li>
                             </ul>
                         </li>
                         <li class="dropdown" style="float:left; position: relative">
