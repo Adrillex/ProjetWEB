@@ -30,7 +30,7 @@ Route::resource('/suggestionBox', 'SuggestionBoxController', ['except' => ['edit
 Route::resource('/likeSuggestion', 'LikeSuggestionController', ['except' =>['index', 'show', 'edit', 'create']]);
 Route::resource('/likePicture', 'LikePicturesController', ['only' =>['store', 'destroy']]);
 Route::resource('/likeDates', 'LikeDatesController', ['except' =>['index', 'show', 'edit', 'create']]);
-Route::resource('/buy', 'BuyController');
+Route::resource('/buy', 'BuyController', ['except' => ['create', 'show', 'edit']]);
 Route::resource('/pictures', 'PictureController', ['only'=>['store', 'update', 'destroy']]);//Show?
 Route::resource('/commentaries', 'CommentariesController', ['except' => ['index', 'edit', 'update', 'show']]);
 Route::resource('/profile', 'ProfileController', ['except' =>['create', 'store']]);
