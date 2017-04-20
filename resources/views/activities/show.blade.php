@@ -4,7 +4,10 @@
         <div class="row">
             <div class="col-md-3" style="text-align: center">
                 <div style="height: 200px; width: 200px; background-color: #c1e2b3; display: inline-block">
-
+                    <?php $path = 'img/activities/' . $activity->id . '.PNG'; ?>
+                    @if(File::exists($path))
+                        {{ Form::image($path), ['class' => 'pull-right'] }}
+                    @endif
                 </div>
             </div>
             <div class="col-md-9" style="text-align: center">
@@ -35,6 +38,12 @@
 
                 </div>
             @endforeach
+        </div>
+
+        <div class="container">
+            <div class="col-md-6 col-md-offset-3">
+                <h2 class="col-md-6 col-md-offset-3">Ajouter une image</h2>
+            </div>
         </div>
         <div class="container">
             <div class="container">

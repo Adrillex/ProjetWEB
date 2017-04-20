@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Commentary;
 use App\Date;
+use App\Picture;
 use App\User;
-use Faker\Provider\DateTime;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class ActivitiesController extends Controller
 {
@@ -29,8 +32,6 @@ class ActivitiesController extends Controller
         foreach ($activities as $activity){
             $dates[$activity->id] = $activity->dates;
         }
-        //if (isset($likedates[2])) echo 'test';
-        //die();
         return view('activities.index', compact('activities', 'dates', 'likedates'));
     }
 
@@ -74,6 +75,16 @@ class ActivitiesController extends Controller
                 $date->save();
             }
         }
+        $input = Input::file('image');
+        if(isset($input)){
+            //get the image from the form
+            $img = Image::make($input);
+            // get the id of the activity saved
+            $activity_id = Activity::ActivityId()->id;
+            // save the image with the size and the name
+            $img->resize(300, 200)->save('img/activities/' . $activity_id . '.PNG');
+        }
+
         return redirect(route('activities.index'));
     }
 

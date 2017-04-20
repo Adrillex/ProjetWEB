@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="content">
-        {!! Form::open(['route' => 'activities.store'])  !!}
+        {!! Form::open(['route' => 'activities.store', 'files' => true])  !!}
         <div class="col-md-6 col-md-offset-1">
             <div class="form-group">
                 {!! Form::label('title', 'titre de l\'activité') !!}
@@ -15,7 +15,10 @@
                 {!! Form::label('price', 'Prix (laisser 0 si gratuit)') !!}
                 {!! Form::number('price', null, ['class' => 'form-control']) !!}
             </div>
-
+            <div class="form-group">
+                {!! Form::label('image', 'Image :') !!}
+                {!! Form::file('image') !!}
+            </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">

@@ -8,6 +8,12 @@
                 <div class="row">
                     <div class="col-sm-4" style="text-align: center">
                         <a href="{{ route('activities.show', $activity) }}"><h3 style="margin-top: 0%">{{ $activity->title }}</h3></a>
+
+                        <?php $path = 'img/activities/' . $activity->id . '.PNG'; ?>
+                        @if(File::exists($path))
+                            {{ Form::image($path), ['class' => 'pull-right'] }}
+                        @endif
+
                     </div>
                     <div class="col-sm-4">
                         <p>{{ $activity->content }}</p>
