@@ -21,19 +21,6 @@
                 <h3>Dernières Nouvelles</h3>
                 <div class="panel panel-default">
                     <div id="carouselText" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <?php $increment = 0?>
-                            @foreach($news as $id=>$new)
-                                @if ($increment===0)
-                                    <li data-target="#carouselText" data-slide-to="{!!$increment!!}" class="active"></li>
-                                @else
-                                    <li data-target="#carouselText" data-slide-to="{!!$increment!!}"></li>
-                                @endif
-                                <?php $increment += 1?>
-                            @endforeach
-                        </ol>
-
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
                             <?php $increment = 0?>
@@ -59,11 +46,11 @@
 
                         <!-- Controls -->
                         <a class="left carousel-control" href="#carouselText" role="button" data-slide="prev" style="background: none;">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="right carousel-control" href="#carouselText" role="button" data-slide="next" style="background: none;">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
                             <span class="sr-only">Next</span>
                         </a>
                     </div>

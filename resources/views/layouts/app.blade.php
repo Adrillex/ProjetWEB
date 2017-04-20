@@ -28,9 +28,9 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top" style="background-color: #191E46;">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #191E46;">
         <a class="navbar-brand" href="{{ url('home') }}">
-            <img src="https://pbs.twimg.com/profile_images/557299226057531392/MNrBiFVj.png" alt="" style=" height: 600%; margin-top: 30%;">
+            <img src="logo_bde.png" alt="" style=" height: 260%; margin-top: -30%;">
         </a>
         <div class="container">
             <div class="navbar-header">
@@ -53,7 +53,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
                 <!-- Left Side Of Navbar -->
-                @if (Auth::check() and Auth::user()->status === 2)
+                @if (Auth::check() and Auth::user()->status == 2)
                     <ul class="nav navbar-nav">
                         <li class="dropdown" style="float:left; position: relative;">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">News

@@ -23,14 +23,25 @@
 }
 .navbar-default .navbar-nav .dropdown-menu{
     background: #B40202;
+    color: white;
 }
 .navbar-default .navbar-nav .dropdown-menu >li > a{
     color: white;
 }
 .navbar-default .navbar-nav .dropdown-menu > li > a:hover,
 .navbar-default .navbar-nav .dropdown-menu > li > a:focus {
-    color: #3b3b3b;
+    color: black;
+    background: #F4C938;
 }
+.navbar-default .navbar-nav .dropdown > a:focus,
+.navbar-default .navbar-nav .dropdown > a:active {
+    background: #F4C938;
+    color: black;
+}
+body{
+    padding-top: 50px;
+}
+
 /* Couleur utilisée pour le lien actif (celui qui est affiché sur la page)
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
