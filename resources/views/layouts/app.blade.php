@@ -104,7 +104,11 @@
                         </li>
 
                         <li class="dropdown" style="float:left; position: relative">
-                            <a href="{{url('suggestionBox')}}"  role="button" aria-expanded="false">Boîte à idées</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
+                                <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
+                            </ul>
                         </li>
                     </ul>
                 @else
@@ -119,11 +123,10 @@
                             <a href="{{url('products')}}" role="button" aria-expanded="false">Shop</a>
                         </li>
                         <li class="dropdown" style="float:left; position: relative">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boîte à idées<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{url('products')}}">Voir le magasin</a></li>
-                                <li><a href="{{url('products/create')}}">Ajouter un nouveau produit</a></li>
-                                <li><a href="{{url('categoriesProduct')}}">Voir les catégories</a></li>
+                                <li><a href="{{url('suggestionBox')}}">Voir les idées</a></li>
+                                <li><a href="{{url('suggestionBox/create')}}">Proposer une idée</a></li>
                             </ul>
                         </li>
                     </ul>
