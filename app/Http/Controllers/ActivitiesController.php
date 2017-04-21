@@ -43,7 +43,6 @@ class ActivitiesController extends Controller
         }
         if ($nav == 'coming'){
             $Adates = Date::RetrieveComingDates()->simplepaginate(10);
-            //dd($activities[0]);
         }
         elseif ($nav = 'past'){
             $Adates = Date::RetrievePastDates()->simplepaginate(10);

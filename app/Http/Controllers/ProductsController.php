@@ -30,7 +30,8 @@ class ProductsController extends Controller
         foreach ($productList as $product){
             $imageList[$product->id] = Product::findOrFail($product->id)->picture;
             $categoryList[$product->id] = CategoryProduct::where(['id' => $product->category_id])->first();
-            $buyList[$product->id] = Buy::where(['user_id' => Auth::user()->id, 'product_id' => $product->id])->first();
+            if(Auth::check())
+                $buyList[$product->id] = Buy::where(['user_id' => Auth::user()->id, 'product_id' => $product->id])->first();
         }
 
         return view('products.index', compact('productList', 'imageList', 'categoryList', 'buyList'));
