@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    /**
+     * route create, store, edit, update and destroy only for bde members
+     * others members can only see show and index
+     */
     public function __construct(){
         $this->middleware('bde',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     }

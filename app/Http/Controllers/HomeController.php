@@ -14,6 +14,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @return home with suggestionlist, news list and activities list
+     */
     public function index()
     {
         $suggestionList = SuggestionBox::SortSuggestionDesc()->get();
@@ -21,10 +24,18 @@ class HomeController extends Controller
         $activities = Activity::SortActivityDescHome()->get();
         return view('home', compact('news', 'suggestionList', 'activities'));
     }
+
+    /**
+     * @return error
+     */
     public function error()
     {
         return view('error');
     }
+
+    /**
+     * @return legals notices
+     */
     public function legalNotice()
     {
         return view('legalNotice');

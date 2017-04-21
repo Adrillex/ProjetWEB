@@ -7,6 +7,10 @@ use App\User;
 
 class ProfileController extends Controller
 {
+    /**
+     * route index only for bde members
+     * others members can use the other
+     */
     public function __construct(){
         $this->middleware('auth', ['only'=>'edit', 'show', 'destroy', 'update']);
         $this->middleware('bde', ['only'=>'index']);
